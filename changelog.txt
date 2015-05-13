@@ -1,0 +1,25 @@
+1.1     2008/10/14
+- changes in 1.0.4 are significant enought to warrant a minor version
+  incrememnt.
+- fixed a couple of minor memory free errors at program termination
+1.0.4   2008/07/08
+- fixed a typo that forced the sersic index in sersic models to be 4
+  (although the normalisation was changing). Previous sersic models
+  should be re-run. Humble apologies. :-(
+- create summary usage message if run with no command line args
+- more robust pruning of linearly dependent search vectors to remove
+  bumps in chi-squared vs parameter space.
+- changed default output names to "model_img.fits" and "model_src.fits"
+- always write out best model image/source when using minfinder
+- change source image to include default source value as part of the source
+  brightness, but automatically remove when projecting to image plane.
+  This way you can use sky subtracted images as data, but supply the true
+  sky background as the default source value, which means the entropy calc
+  is more correct for the actual counts/variance in the data. The output
+  source planes will now include the sky background and it should be removed
+  if necessary.
+1.0.3   2007/5/4   Updated usage message. Changed debugging output for SIE
+axisratio be to "axisratio", not "ellipticity"
+1.0.2   2007/1/8   Fixed bug in calculating external shear deflection angles
+1.0.1   2006/11/20 Fixed segfault in log.c when unable to open log file
+V1.0    2006/9/17  Initial release
