@@ -1,0 +1,2 @@
+main: Starting minim
+main: MaxEn returned

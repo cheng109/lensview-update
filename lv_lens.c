@@ -32,8 +32,6 @@ $Id: lv_lens.c,v 1.32 2008/10/31 20:43:10 rwayth Exp rwayth $
 #define	LM_NPARAMS_FERRERS	4
 #define	LM_NPARAMS_USERDEF	2
 
-#define LM_NPARAMS_SPEMD_NEW    7 
-
 #define	GOLD_RATIO	1.618034
 
 #define	LM_CACHE_MISS		-42
@@ -232,6 +230,9 @@ int lm_CalcDeflComponent(lv_lenscomp *pLensComp, real_t fX, real_t fY, real_t *p
 				double	x1, y1;
 				real_t	fCosTheta, fSinTheta;
 
+                
+                fX -= g_PixelResn*pLensComp->fParameter[5];
+                fY -= g_PixelResn*pLensComp->fParameter[6];
 				/* note: need the sqrt(fTempAxratio) to normalise the area pi*a*b equal to one
 				 * for all ellipticities */
 				fTempAxratio = 1.0 - pLensComp->fParameter[1];
@@ -257,8 +258,11 @@ int lm_CalcDeflComponent(lv_lenscomp *pLensComp, real_t fX, real_t fY, real_t *p
 				fSinTheta = sin(pLensComp->fParameter[2]*M_PI/180);
 
 				/* rotate the reference frame for ellipse with semi-major axis of potential in X dir */
-				x1 = (fX*fCosTheta + fY*fSinTheta);
-				y1 = (-fX*fSinTheta + fY*fCosTheta);
+				//x1 = (fX*fCosTheta + fY*fSinTheta);
+				//y1 = (-fX*fSinTheta + fY*fCosTheta);
+                
+                x1 = (fX*fCosTheta + fY*fSinTheta);
+                y1 = (-fX*fSinTheta + fY*fCosTheta);
 
 /* 20/6/01. Correction for non-isothermal added. See notebook
 *				fTempKappa = 0.5*pLensComp->fParameter[0]/sqrt(fTempAxratio);
@@ -1269,6 +1273,7 @@ static int	lm_CreateLMComp_SPEMD(lv_lensmodel_t *pLens,real_t fXoffset, real_t f
 	LOG_ERR("this lens model is not available");
 	iStatus=1;
 	*/
+
 
 
 EXIT:
