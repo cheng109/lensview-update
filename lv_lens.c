@@ -23,7 +23,7 @@ $Id: lv_lens.c,v 1.32 2008/10/31 20:43:10 rwayth Exp rwayth $
 #define	LM_NPARAMS_NFW		4
 #define	LM_NPARAMS_PTMASS	1
 #define	LM_NPARAMS_MASSSHEET	1
-#define	LM_NPARAMS_SPEMD	5
+#define	LM_NPARAMS_SPEMD	7
 #define	LM_NPARAMS_SIE		3
 #define	LM_NPARAMS_PIEP		4
 #define	LM_NPARAMS_EXPDISC	4
@@ -31,6 +31,8 @@ $Id: lv_lens.c,v 1.32 2008/10/31 20:43:10 rwayth Exp rwayth $
 #define	LM_NPARAMS_SERSIC	5
 #define	LM_NPARAMS_FERRERS	4
 #define	LM_NPARAMS_USERDEF	2
+
+#define LM_NPARAMS_SPEMD_NEW    7 
 
 #define	GOLD_RATIO	1.618034
 
@@ -65,7 +67,7 @@ static  real_t   lm_calc_sersic_b(real_t m);
 static int	lm_CreateLMComp_SPEMD(lv_lensmodel_t *pLens,real_t fXoffset, real_t fYoffset, real_t fMassScaleFrom, 
 		real_t fMassScaleTo, real_t fMassScaleInc, real_t fEllipFrom, real_t fEllipTo, real_t fEllipInc,
 		real_t fAngleFrom, real_t fAngleTo, real_t fAngleInc, real_t fGammaFrom, real_t fGammaTo,
-		real_t fGammaInc, real_t fCoreFrom, real_t fCoreTo, real_t fCoreInc);
+		real_t fGammaInc, real_t fCoreFrom, real_t fCoreTo, real_t fCoreInc,real_t fCenterXFromm, real_t fCenterXTo, real_t fCenterXInc, real_t fCenterYFrom, real_t CenterYFrom, real_t CenterYTo, real_t CenterYInc);
 static int	lm_CreateLMComp_Ferrers(lv_lensmodel_t *pLens,real_t fXoffset, real_t fYoffset, real_t critfrom, real_t critto, real_t critinc, real_t AFrom, real_t ATo, real_t AInc, real_t BFrom, real_t BTo, real_t BInc, real_t Angfrom, real_t Angto, real_t Anginc);
 static int	lm_CreateLMComp_Userdef(lv_lensmodel_t *pLens,real_t fXoffset, real_t fYoffset, real_t critfrom, real_t critto, real_t critinc, real_t AFrom, real_t ATo, real_t AInc, lv_image_t *pDefX, lv_image_t *pDefY);
 static	double	lm_ferrersq10(real_t a, real_t b, double lambda);
@@ -222,9 +224,9 @@ int lm_CalcDeflComponent(lv_lenscomp *pLensComp, real_t fX, real_t fY, real_t *p
 
 		case	LM_SPEMD:
 			{
-				/* parameters are: kappa, ellipticity,angle, gamma, corerad */
+				/* parameters are: kappa, ellipticity,angle, gamma, corerad, centerX, centerY */
 
-				double	fTempKappa = 0.0,fTempCoreSqu=0.0, fTempAxratio=1.0, fTempDefl[2], fTempGamma = 0.0;
+			  double	fTempKappa = 0.0,fTempCoreSqu=0.0, fTempAxratio=1.0, fTempDefl[2], fTempGamma = 0.0, fTempCenterX=0, fTempCenterY=0;
 				double	x1, y1;
 				real_t	fCosTheta, fSinTheta;
 
@@ -730,10 +732,12 @@ lv_lensmodel_t *lm_ReadLensFile(char	*strFile) {
 					{
 						double	xoff=0,yoff=0,critfrom=0,critto=0,critinc=0,ellfrom=0,ellto=0,ellinc=0;
 						double	angfrom=0,angto=0,anginc=0,corefrom=0,coreto=0,coreinc=0,gammfrom=0,gammto=0,gamminc=0;
+                        double  centerXfrom =0, centerXto=0, centerXinc = 0;
+                        double  centerYfrom =0, centerYto=0, centerYinc = 0;
 
-						nconv = sscanf(pStartParam+1,"(%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf)",
+						nconv = sscanf(pStartParam+1,"(%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf)",
                                        &xoff,&yoff,&critfrom,&critto, &critinc,&ellfrom,&ellto,&ellinc,
-                                       &angfrom,&angto,&anginc,&gammfrom,&gammto,&gamminc,&corefrom,&coreto,&coreinc);
+                                       &angfrom,&angto,&anginc,&gammfrom,&gammto,&gamminc,&corefrom,&coreto,&coreinc, &centerXfrom, &centerXto, &centerXinc, &centerYfrom, &centerYto, &centerYinc);
 
 						if (nconv < LM_NPARAMS_SPEMD*3+2) {
 							fprintf(stderr,"Parameter conversion failed for lens type %d. params were: <%s>\n",iCompType,pStartParam+1);
@@ -742,7 +746,7 @@ lv_lensmodel_t *lm_ReadLensFile(char	*strFile) {
 						}
 
 						iStatus = lm_CreateLMComp_SPEMD(pLens,xoff,yoff,critfrom,critto,critinc,ellfrom,ellto,ellinc,
-							angfrom,angto,anginc,gammfrom,gammto,gamminc,corefrom,coreto,coreinc);
+							angfrom,angto,anginc,gammfrom,gammto,gamminc,corefrom,coreto,coreinc, centerXfrom, centerXto, centerXinc, centerYfrom, centerYto, centerYinc);
 					}
 					break;
 
@@ -1054,7 +1058,7 @@ int	lm_CreateLMComp_SIS(lv_lensmodel_t *pLens,real_t fXoffset, real_t fYoffset, 
 	return iStatus;
 }
 
-
+ 
 /***************************
 Function:
 Description:
@@ -1209,13 +1213,13 @@ Returns:
 static int	lm_CreateLMComp_SPEMD(lv_lensmodel_t *pLens,real_t fXoffset, real_t fYoffset, real_t fMassScaleFrom, 
 		real_t fMassScaleTo, real_t fMassScaleInc, real_t fEllipFrom, real_t fEllipTo, real_t fEllipInc,
 		real_t fAngleFrom, real_t fAngleTo, real_t fAngleInc, real_t fGammaFrom, real_t fGammaTo,
-		real_t fGammaInc, real_t fCoreFrom, real_t fCoreTo, real_t fCoreInc) {
+				      real_t fGammaInc, real_t fCoreFrom, real_t fCoreTo, real_t fCoreInc，real_t fCenterXFromm, real_t fCenterXTo, real_t fCenterXInc, real_t fCenterYFrom, real_t CenterYFrom, real_t CenterYTo, real_t CenterYInc) {
 
 	int		iStatus=0;
 	real_t	fromparams[LM_NPARAMS_SPEMD];
 	real_t	toparams[LM_NPARAMS_SPEMD];
 	real_t	incparams[LM_NPARAMS_SPEMD];
-	char	*strNames[LM_NPARAMS_SPEMD] = {"Critrad","Ellipticity","Orient_Angle","Gamma","Core_rad"};
+	char	*strNames[LM_NPARAMS_SPEMD] = {"Critrad","Ellipticity","Orient_Angle","Gamma","Core_rad", "CenterX", "CenterY"};
 
 	TRACE_IN(lm_CreateLMComp_SPEMD);
 
@@ -1231,24 +1235,30 @@ static int	lm_CreateLMComp_SPEMD(lv_lensmodel_t *pLens,real_t fXoffset, real_t f
 	fromparams[2] = fAngleFrom;
 	fromparams[3] = fGammaFrom;
 	fromparams[4] = fCoreFrom;
+	fromparams[5] = fCenterXFrom; 
+	fromparams[6] = fCenterYFrom; 
 
 	toparams[0] = fMassScaleTo;
 	toparams[1] = fEllipTo;
 	toparams[2] = fAngleTo;
 	toparams[3] = fGammaTo;
 	toparams[4] = fCoreTo;
+	toparams[5] = fCenterXTo; 
+	toparams[6] = fCenterYTo; 
 
 	incparams[0] = fMassScaleInc;
 	incparams[1] = fEllipInc;
 	incparams[2] = fAngleInc;
 	incparams[3] = fGammaInc;
 	incparams[4] = fCoreInc;
+	incparams[5] = fCenterXInc; 
+	incparams[6] = fCenterYInc; 
 
 	pLens->iNumParameters +=LM_NPARAMS_SPEMD+2;
 
 	iStatus = lm_InitLensModel(pLens, LM_SPEMD, fXoffset, fYoffset, LM_NPARAMS_SPEMD , fromparams, toparams, incparams,strNames); 
 
-	sprintf(strMessage,"Created SPEMD lens model component. offset: (%.2f,%.2f), Critrad: %.3f-%.3f +%.3f, Ellip: %.3f-%.3f +%.3f, Angle: %.1f-%.1f +%.1f, Gamma: %.3f-%.3f +%.3f, Core: %.3f-%.3f +%.3f",fXoffset,fYoffset,fMassScaleFrom, fMassScaleTo, fMassScaleInc, fEllipFrom, fEllipTo, fEllipInc, fAngleFrom, fAngleTo, fAngleInc, fGammaFrom,fGammaTo,fGammaInc,fCoreFrom, fCoreTo, fCoreInc);
+	sprintf(strMessage,"Created SPEMD lens model component. offset: (%.2f,%.2f), Critrad: %.3f-%.3f +%.3f, Ellip: %.3f-%.3f +%.3f, Angle: %.1f-%.1f +%.1f, Gamma: %.3f-%.3f +%.3f, Core: %.3f-%.3f +%.3f, CenterX: %.3f-%.3f +%.3f, CenterY: %.3f-%.3f +%.3f",fXoffset,fYoffset,fMassScaleFrom, fMassScaleTo, fMassScaleInc, fEllipFrom, fEllipTo, fEllipInc, fAngleFrom, fAngleTo, fAngleInc, fGammaFrom,fGammaTo,fGammaInc,fCoreFrom, fCoreTo, fCoreInc, fCenterXFrom, fCenterXTo, fCenterXInc,fCenterYFrom, fCenterYTo, fCenterYInc );
 	TRACE(LOG_HIGH_PRI,strMessage);
 
 	/*

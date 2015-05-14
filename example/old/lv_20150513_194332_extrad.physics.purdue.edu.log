@@ -1,0 +1,333 @@
+2015/05/13 19:43:32 main: ./lensview starting on machine extrad.physics.purdue.edu
+2015/05/13 19:43:32 main: Setting nice pri to 2
+2015/05/13 19:43:32 main: Using user-defined target chi-squ: 1000
+2015/05/13 19:43:32 main: Reading data file <img_s6_mag5.fits>
+2015/05/13 19:43:32 main: Using user-defined image plane mask file <mask_s3.fits>
+2015/05/13 19:43:32 main: Reading PSF file <acs_wfc_psf_11x11.fits>
+2015/05/13 19:43:32 main: Total of PSF array was 0.914221. Normalising so that total is 1...
+2015/05/13 19:43:32 main: Reading variance file <var_s6_mag5.fits>
+2015/05/13 19:43:32 main: Reading source file <source15x15empty.fits>. Including offsets x: 4, y: 5
+2015/05/13 19:43:32 main: Using user-specified default src val of 0.1.
+2015/05/13 19:43:32 main: Reading param file <comps.txt>
+2015/05/13 19:43:32 lm_CreateLMComp_SPEMD: Created SPEMD lens model component. offset: (0.00,0.00), Critrad: 1.170-1.240 +0.100, Ellip: 0.140-0.230 +0.010, Angle: 65.0-69.0 +1.0, Gamma: 0.580-0.580 +0.100, Core: 0.050-0.050 +0.010
+2015/05/13 19:43:32 main: Image pixel resolution: 0.05. Source to image pixel resolution ratio: 3
+2015/05/13 19:43:32 lp_doParamSweep: Data variance is 4.54631. Mean is 0.28896
+2015/05/13 19:43:32 lp_doParamSweep: Total expected paramter combinations: 50
+2015/05/13 19:43:32 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.14 Orient_Angle: 65 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:33 lv_createMappingMatrix: 5 percent of 14884 element I,J matrix was used. Total K,L memory used: 1381 K
+2015/05/13 19:43:33 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 786, number overlap 786. Using multiply imaged pixels only: 0
+2015/05/13 19:43:33 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:33 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.13729
+2015/05/13 19:43:33 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1932.85 Entropy: -5865.29 Reduced chisqu: 1.91941 Num img pix: 1234 Num src pix: 220
+2015/05/13 19:43:33 lp_doParamSweep: Best Chisqu of 1932.85. ent: -5865.29
+2015/05/13 19:43:33 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.14 Orient_Angle: 66 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:33 lv_createMappingMatrix: 5 percent of 14884 element I,J matrix was used. Total K,L memory used: 1381 K
+2015/05/13 19:43:33 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 786, number overlap 786. Using multiply imaged pixels only: 0
+2015/05/13 19:43:33 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:33 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.179507
+2015/05/13 19:43:33 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1915.94 Entropy: -5906.73 Reduced chisqu: 1.90074 Num img pix: 1234 Num src pix: 219
+2015/05/13 19:43:33 lp_doParamSweep: Best Chisqu of 1915.94. ent: -5906.73
+2015/05/13 19:43:33 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.14 Orient_Angle: 67 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:34 lv_createMappingMatrix: 5 percent of 14884 element I,J matrix was used. Total K,L memory used: 1385 K
+2015/05/13 19:43:34 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 788, number overlap 788. Using multiply imaged pixels only: 0
+2015/05/13 19:43:34 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:34 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.175869
+2015/05/13 19:43:34 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1916.61 Entropy: -5932.09 Reduced chisqu: 1.89763 Num img pix: 1234 Num src pix: 217
+2015/05/13 19:43:34 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.14 Orient_Angle: 68 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:34 lv_createMappingMatrix: 5 percent of 14884 element I,J matrix was used. Total K,L memory used: 1390 K
+2015/05/13 19:43:34 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 791, number overlap 791. Using multiply imaged pixels only: 0
+2015/05/13 19:43:34 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:34 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.191136
+2015/05/13 19:43:34 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1949.54 Entropy: -5980.31 Reduced chisqu: 1.92643 Num img pix: 1234 Num src pix: 215
+2015/05/13 19:43:34 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.14 Orient_Angle: 69 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:34 lv_createMappingMatrix: 5 percent of 14884 element I,J matrix was used. Total K,L memory used: 1395 K
+2015/05/13 19:43:34 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 794, number overlap 794. Using multiply imaged pixels only: 0
+2015/05/13 19:43:34 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:35 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.21486
+2015/05/13 19:43:35 lp_doParamSweep: MaxEn returned 0 Chi Squ: 2005.54 Entropy: -6026.79 Reduced chisqu: 1.98176 Num img pix: 1234 Num src pix: 215
+2015/05/13 19:43:35 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.15 Orient_Angle: 65 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:35 lv_createMappingMatrix: 5 percent of 14884 element I,J matrix was used. Total K,L memory used: 1365 K
+2015/05/13 19:43:35 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 777, number overlap 777. Using multiply imaged pixels only: 0
+2015/05/13 19:43:35 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:35 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.137956
+2015/05/13 19:43:35 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1878.69 Entropy: -5919.77 Reduced chisqu: 1.85641 Num img pix: 1234 Num src pix: 215
+2015/05/13 19:43:35 lp_doParamSweep: Best Chisqu of 1878.69. ent: -5919.77
+2015/05/13 19:43:35 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.15 Orient_Angle: 66 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:35 lv_createMappingMatrix: 5 percent of 14884 element I,J matrix was used. Total K,L memory used: 1364 K
+2015/05/13 19:43:35 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 776, number overlap 776. Using multiply imaged pixels only: 0
+2015/05/13 19:43:35 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:35 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.170902
+2015/05/13 19:43:35 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1862.74 Entropy: -5955.99 Reduced chisqu: 1.84796 Num img pix: 1234 Num src pix: 219
+2015/05/13 19:43:35 lp_doParamSweep: Best Chisqu of 1862.74. ent: -5955.99
+2015/05/13 19:43:35 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.15 Orient_Angle: 67 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:36 lv_createMappingMatrix: 5 percent of 14884 element I,J matrix was used. Total K,L memory used: 1367 K
+2015/05/13 19:43:36 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 778, number overlap 778. Using multiply imaged pixels only: 0
+2015/05/13 19:43:36 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:36 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.176027
+2015/05/13 19:43:36 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1861.08 Entropy: -6005.89 Reduced chisqu: 1.84631 Num img pix: 1234 Num src pix: 219
+2015/05/13 19:43:36 lp_doParamSweep: Best Chisqu of 1861.08. ent: -6005.89
+2015/05/13 19:43:36 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.15 Orient_Angle: 68 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:36 lv_createMappingMatrix: 5 percent of 14884 element I,J matrix was used. Total K,L memory used: 1378 K
+2015/05/13 19:43:36 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 784, number overlap 784. Using multiply imaged pixels only: 0
+2015/05/13 19:43:36 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:36 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.192185
+2015/05/13 19:43:36 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1881.42 Entropy: -6046.57 Reduced chisqu: 1.86648 Num img pix: 1234 Num src pix: 219
+2015/05/13 19:43:36 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.15 Orient_Angle: 69 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:36 lv_createMappingMatrix: 5 percent of 14884 element I,J matrix was used. Total K,L memory used: 1385 K
+2015/05/13 19:43:36 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 788, number overlap 788. Using multiply imaged pixels only: 0
+2015/05/13 19:43:36 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:37 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.198779
+2015/05/13 19:43:37 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1936.84 Entropy: -6096.43 Reduced chisqu: 1.91387 Num img pix: 1234 Num src pix: 215
+2015/05/13 19:43:37 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.16 Orient_Angle: 65 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:37 lv_createMappingMatrix: 5 percent of 14884 element I,J matrix was used. Total K,L memory used: 1358 K
+2015/05/13 19:43:37 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 773, number overlap 773. Using multiply imaged pixels only: 0
+2015/05/13 19:43:37 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:37 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.188335
+2015/05/13 19:43:37 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1813.89 Entropy: -6022.98 Reduced chisqu: 1.7995 Num img pix: 1234 Num src pix: 219
+2015/05/13 19:43:37 lp_doParamSweep: Best Chisqu of 1813.89. ent: -6022.98
+2015/05/13 19:43:37 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.16 Orient_Angle: 66 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:37 lv_createMappingMatrix: 5 percent of 14884 element I,J matrix was used. Total K,L memory used: 1353 K
+2015/05/13 19:43:37 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 770, number overlap 770. Using multiply imaged pixels only: 0
+2015/05/13 19:43:37 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:37 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.180151
+2015/05/13 19:43:37 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1798.14 Entropy: -6041.33 Reduced chisqu: 1.78565 Num img pix: 1234 Num src pix: 220
+2015/05/13 19:43:37 lp_doParamSweep: Best Chisqu of 1798.14. ent: -6041.33
+2015/05/13 19:43:37 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.16 Orient_Angle: 67 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:38 lv_createMappingMatrix: 5 percent of 14884 element I,J matrix was used. Total K,L memory used: 1358 K
+2015/05/13 19:43:38 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 773, number overlap 773. Using multiply imaged pixels only: 0
+2015/05/13 19:43:38 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:38 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.175763
+2015/05/13 19:43:38 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1793.4 Entropy: -6103.9 Reduced chisqu: 1.77213 Num img pix: 1234 Num src pix: 215
+2015/05/13 19:43:38 lp_doParamSweep: Best Chisqu of 1793.4. ent: -6103.9
+2015/05/13 19:43:38 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.16 Orient_Angle: 68 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:38 lv_createMappingMatrix: 5 percent of 14884 element I,J matrix was used. Total K,L memory used: 1357 K
+2015/05/13 19:43:38 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 772, number overlap 772. Using multiply imaged pixels only: 0
+2015/05/13 19:43:38 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:38 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.190342
+2015/05/13 19:43:38 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1824.08 Entropy: -6137.43 Reduced chisqu: 1.8078 Num img pix: 1234 Num src pix: 218
+2015/05/13 19:43:38 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.16 Orient_Angle: 69 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:38 lv_createMappingMatrix: 5 percent of 14884 element I,J matrix was used. Total K,L memory used: 1360 K
+2015/05/13 19:43:38 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 774, number overlap 774. Using multiply imaged pixels only: 0
+2015/05/13 19:43:38 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:39 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.196808
+2015/05/13 19:43:39 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1879.35 Entropy: -6160.61 Reduced chisqu: 1.85707 Num img pix: 1234 Num src pix: 215
+2015/05/13 19:43:39 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.17 Orient_Angle: 65 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:39 lv_createMappingMatrix: 5 percent of 14884 element I,J matrix was used. Total K,L memory used: 1334 K
+2015/05/13 19:43:39 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 759, number overlap 759. Using multiply imaged pixels only: 0
+2015/05/13 19:43:39 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:39 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.159595
+2015/05/13 19:43:39 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1766.34 Entropy: -6106.72 Reduced chisqu: 1.74712 Num img pix: 1234 Num src pix: 216
+2015/05/13 19:43:39 lp_doParamSweep: Best Chisqu of 1766.34. ent: -6106.72
+2015/05/13 19:43:39 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.17 Orient_Angle: 66 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:39 lv_createMappingMatrix: 5 percent of 14884 element I,J matrix was used. Total K,L memory used: 1328 K
+2015/05/13 19:43:39 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 756, number overlap 756. Using multiply imaged pixels only: 0
+2015/05/13 19:43:39 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:39 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.160396
+2015/05/13 19:43:39 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1744.11 Entropy: -6122.24 Reduced chisqu: 1.73027 Num img pix: 1234 Num src pix: 219
+2015/05/13 19:43:39 lp_doParamSweep: Best Chisqu of 1744.11. ent: -6122.24
+2015/05/13 19:43:39 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.17 Orient_Angle: 67 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:40 lv_createMappingMatrix: 5 percent of 14884 element I,J matrix was used. Total K,L memory used: 1335 K
+2015/05/13 19:43:40 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 760, number overlap 760. Using multiply imaged pixels only: 0
+2015/05/13 19:43:40 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:40 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.172041
+2015/05/13 19:43:40 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1751.22 Entropy: -6119.8 Reduced chisqu: 1.74251 Num img pix: 1234 Num src pix: 222
+2015/05/13 19:43:40 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.17 Orient_Angle: 68 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:40 lv_createMappingMatrix: 5 percent of 14884 element I,J matrix was used. Total K,L memory used: 1344 K
+2015/05/13 19:43:40 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 765, number overlap 765. Using multiply imaged pixels only: 0
+2015/05/13 19:43:40 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:40 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.173894
+2015/05/13 19:43:40 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1776.99 Entropy: -6172.53 Reduced chisqu: 1.75245 Num img pix: 1234 Num src pix: 213
+2015/05/13 19:43:40 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.17 Orient_Angle: 69 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:40 lv_createMappingMatrix: 5 percent of 14884 element I,J matrix was used. Total K,L memory used: 1348 K
+2015/05/13 19:43:40 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 767, number overlap 767. Using multiply imaged pixels only: 0
+2015/05/13 19:43:40 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:41 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.174393
+2015/05/13 19:43:41 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1827.76 Entropy: -6186.63 Reduced chisqu: 1.81145 Num img pix: 1234 Num src pix: 218
+2015/05/13 19:43:41 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.18 Orient_Angle: 65 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:41 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1300 K
+2015/05/13 19:43:41 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 740, number overlap 740. Using multiply imaged pixels only: 0
+2015/05/13 19:43:41 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:41 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.171073
+2015/05/13 19:43:41 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1730.42 Entropy: -6178.34 Reduced chisqu: 1.71669 Num img pix: 1234 Num src pix: 219
+2015/05/13 19:43:41 lp_doParamSweep: Best Chisqu of 1730.42. ent: -6178.34
+2015/05/13 19:43:41 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.18 Orient_Angle: 66 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:41 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1297 K
+2015/05/13 19:43:41 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 738, number overlap 738. Using multiply imaged pixels only: 0
+2015/05/13 19:43:41 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:41 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.164418
+2015/05/13 19:43:41 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1710.89 Entropy: -6221.77 Reduced chisqu: 1.69395 Num img pix: 1234 Num src pix: 217
+2015/05/13 19:43:41 lp_doParamSweep: Best Chisqu of 1710.89. ent: -6221.77
+2015/05/13 19:43:41 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.18 Orient_Angle: 67 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:42 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1307 K
+2015/05/13 19:43:42 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 744, number overlap 744. Using multiply imaged pixels only: 0
+2015/05/13 19:43:42 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:42 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.186203
+2015/05/13 19:43:42 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1717.96 Entropy: -6226.01 Reduced chisqu: 1.69257 Num img pix: 1234 Num src pix: 212
+2015/05/13 19:43:42 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.18 Orient_Angle: 68 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:42 lv_createMappingMatrix: 5 percent of 14884 element I,J matrix was used. Total K,L memory used: 1311 K
+2015/05/13 19:43:42 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 746, number overlap 746. Using multiply imaged pixels only: 0
+2015/05/13 19:43:42 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:42 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.174096
+2015/05/13 19:43:42 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1745.48 Entropy: -6247.91 Reduced chisqu: 1.72138 Num img pix: 1234 Num src pix: 213
+2015/05/13 19:43:42 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.18 Orient_Angle: 69 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:42 lv_createMappingMatrix: 5 percent of 14884 element I,J matrix was used. Total K,L memory used: 1314 K
+2015/05/13 19:43:42 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 748, number overlap 748. Using multiply imaged pixels only: 0
+2015/05/13 19:43:42 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:43 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.165589
+2015/05/13 19:43:43 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1796.09 Entropy: -6226.84 Reduced chisqu: 1.77479 Num img pix: 1234 Num src pix: 215
+2015/05/13 19:43:43 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.19 Orient_Angle: 65 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:43 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1272 K
+2015/05/13 19:43:43 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 724, number overlap 724. Using multiply imaged pixels only: 0
+2015/05/13 19:43:43 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:43 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.159883
+2015/05/13 19:43:43 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1714.05 Entropy: -6276.66 Reduced chisqu: 1.6954 Num img pix: 1234 Num src pix: 216
+2015/05/13 19:43:43 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.19 Orient_Angle: 66 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:43 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1269 K
+2015/05/13 19:43:43 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 722, number overlap 722. Using multiply imaged pixels only: 0
+2015/05/13 19:43:43 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:43 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.173571
+2015/05/13 19:43:43 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1692.41 Entropy: -6257.62 Reduced chisqu: 1.68065 Num img pix: 1234 Num src pix: 220
+2015/05/13 19:43:43 lp_doParamSweep: Best Chisqu of 1692.41. ent: -6257.62
+2015/05/13 19:43:43 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.19 Orient_Angle: 67 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:44 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1277 K
+2015/05/13 19:43:44 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 727, number overlap 727. Using multiply imaged pixels only: 0
+2015/05/13 19:43:44 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:44 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.167605
+2015/05/13 19:43:44 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1692.35 Entropy: -6295.42 Reduced chisqu: 1.67559 Num img pix: 1234 Num src pix: 217
+2015/05/13 19:43:44 lp_doParamSweep: Best Chisqu of 1692.35. ent: -6295.42
+2015/05/13 19:43:44 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.19 Orient_Angle: 68 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:44 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1279 K
+2015/05/13 19:43:44 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 728, number overlap 728. Using multiply imaged pixels only: 0
+2015/05/13 19:43:44 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:44 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.174202
+2015/05/13 19:43:44 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1722.67 Entropy: -6284.43 Reduced chisqu: 1.69721 Num img pix: 1234 Num src pix: 212
+2015/05/13 19:43:44 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.19 Orient_Angle: 69 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:44 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1288 K
+2015/05/13 19:43:44 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 733, number overlap 733. Using multiply imaged pixels only: 0
+2015/05/13 19:43:44 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:45 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.147543
+2015/05/13 19:43:45 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1780.87 Entropy: -6298.39 Reduced chisqu: 1.75802 Num img pix: 1234 Num src pix: 214
+2015/05/13 19:43:45 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.2 Orient_Angle: 65 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:45 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1226 K
+2015/05/13 19:43:45 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 698, number overlap 698. Using multiply imaged pixels only: 0
+2015/05/13 19:43:45 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:45 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.156913
+2015/05/13 19:43:45 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1716.06 Entropy: -6308.78 Reduced chisqu: 1.68904 Num img pix: 1234 Num src pix: 211
+2015/05/13 19:43:45 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.2 Orient_Angle: 66 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:45 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1232 K
+2015/05/13 19:43:45 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 701, number overlap 701. Using multiply imaged pixels only: 0
+2015/05/13 19:43:45 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:45 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.16743
+2015/05/13 19:43:45 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1690.08 Entropy: -6325.12 Reduced chisqu: 1.66346 Num img pix: 1234 Num src pix: 211
+2015/05/13 19:43:45 lp_doParamSweep: Best Chisqu of 1690.08. ent: -6325.12
+2015/05/13 19:43:45 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.2 Orient_Angle: 67 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:46 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1230 K
+2015/05/13 19:43:46 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 700, number overlap 700. Using multiply imaged pixels only: 0
+2015/05/13 19:43:46 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:46 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.159478
+2015/05/13 19:43:46 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1691.88 Entropy: -6340.61 Reduced chisqu: 1.66853 Num img pix: 1234 Num src pix: 213
+2015/05/13 19:43:46 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.2 Orient_Angle: 68 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:46 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1233 K
+2015/05/13 19:43:46 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 702, number overlap 702. Using multiply imaged pixels only: 0
+2015/05/13 19:43:46 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:46 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.153121
+2015/05/13 19:43:46 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1715.29 Entropy: -6343.25 Reduced chisqu: 1.69662 Num img pix: 1234 Num src pix: 216
+2015/05/13 19:43:46 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.2 Orient_Angle: 69 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:46 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1251 K
+2015/05/13 19:43:46 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 712, number overlap 712. Using multiply imaged pixels only: 0
+2015/05/13 19:43:46 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:47 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.154772
+2015/05/13 19:43:47 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1777.51 Entropy: -6353.31 Reduced chisqu: 1.7547 Num img pix: 1234 Num src pix: 214
+2015/05/13 19:43:47 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.21 Orient_Angle: 65 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:47 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1204 K
+2015/05/13 19:43:47 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 685, number overlap 685. Using multiply imaged pixels only: 0
+2015/05/13 19:43:47 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:47 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.166605
+2015/05/13 19:43:47 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1701.01 Entropy: -6366.49 Reduced chisqu: 1.67423 Num img pix: 1234 Num src pix: 211
+2015/05/13 19:43:47 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.21 Orient_Angle: 66 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:47 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1198 K
+2015/05/13 19:43:47 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 682, number overlap 682. Using multiply imaged pixels only: 0
+2015/05/13 19:43:47 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:47 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.182246
+2015/05/13 19:43:47 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1676.69 Entropy: -6358.33 Reduced chisqu: 1.64866 Num img pix: 1234 Num src pix: 210
+2015/05/13 19:43:47 lp_doParamSweep: Best Chisqu of 1676.69. ent: -6358.33
+2015/05/13 19:43:47 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.21 Orient_Angle: 67 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:48 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1202 K
+2015/05/13 19:43:48 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 684, number overlap 684. Using multiply imaged pixels only: 0
+2015/05/13 19:43:48 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:48 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.17538
+2015/05/13 19:43:48 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1678 Entropy: -6382.18 Reduced chisqu: 1.65158 Num img pix: 1234 Num src pix: 211
+2015/05/13 19:43:48 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.21 Orient_Angle: 68 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:48 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1209 K
+2015/05/13 19:43:48 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 688, number overlap 688. Using multiply imaged pixels only: 0
+2015/05/13 19:43:48 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:48 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.173965
+2015/05/13 19:43:48 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1706.82 Entropy: -6403.69 Reduced chisqu: 1.68159 Num img pix: 1234 Num src pix: 212
+2015/05/13 19:43:48 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.21 Orient_Angle: 69 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:48 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1209 K
+2015/05/13 19:43:48 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 688, number overlap 688. Using multiply imaged pixels only: 0
+2015/05/13 19:43:48 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:49 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.17046
+2015/05/13 19:43:49 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1770.08 Entropy: -6453.01 Reduced chisqu: 1.74392 Num img pix: 1234 Num src pix: 212
+2015/05/13 19:43:49 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.22 Orient_Angle: 65 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:49 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1170 K
+2015/05/13 19:43:49 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 666, number overlap 666. Using multiply imaged pixels only: 0
+2015/05/13 19:43:49 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:49 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.188504
+2015/05/13 19:43:49 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1714.85 Entropy: -6395.05 Reduced chisqu: 1.68453 Num img pix: 1234 Num src pix: 209
+2015/05/13 19:43:49 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.22 Orient_Angle: 66 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:49 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1179 K
+2015/05/13 19:43:49 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 671, number overlap 671. Using multiply imaged pixels only: 0
+2015/05/13 19:43:49 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:49 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.192526
+2015/05/13 19:43:49 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1687.06 Entropy: -6410.22 Reduced chisqu: 1.65886 Num img pix: 1234 Num src pix: 210
+2015/05/13 19:43:49 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.22 Orient_Angle: 67 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:50 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1165 K
+2015/05/13 19:43:50 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 663, number overlap 663. Using multiply imaged pixels only: 0
+2015/05/13 19:43:50 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:50 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.217361
+2015/05/13 19:43:50 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1704.27 Entropy: -6434.27 Reduced chisqu: 1.67578 Num img pix: 1234 Num src pix: 210
+2015/05/13 19:43:50 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.22 Orient_Angle: 68 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:50 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1174 K
+2015/05/13 19:43:50 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 668, number overlap 668. Using multiply imaged pixels only: 0
+2015/05/13 19:43:50 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:50 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.19834
+2015/05/13 19:43:50 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1729.78 Entropy: -6460.81 Reduced chisqu: 1.70087 Num img pix: 1234 Num src pix: 210
+2015/05/13 19:43:50 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.22 Orient_Angle: 69 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:50 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1179 K
+2015/05/13 19:43:50 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 671, number overlap 671. Using multiply imaged pixels only: 0
+2015/05/13 19:43:50 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:51 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.193546
+2015/05/13 19:43:51 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1782.92 Entropy: -6497.08 Reduced chisqu: 1.75484 Num img pix: 1234 Num src pix: 211
+2015/05/13 19:43:51 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.23 Orient_Angle: 65 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:51 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1151 K
+2015/05/13 19:43:51 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 655, number overlap 655. Using multiply imaged pixels only: 0
+2015/05/13 19:43:51 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:51 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.207875
+2015/05/13 19:43:51 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1740.26 Entropy: -6388.7 Reduced chisqu: 1.71454 Num img pix: 1234 Num src pix: 212
+2015/05/13 19:43:51 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.23 Orient_Angle: 66 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:51 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1144 K
+2015/05/13 19:43:51 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 651, number overlap 651. Using multiply imaged pixels only: 0
+2015/05/13 19:43:51 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:51 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.240558
+2015/05/13 19:43:51 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1720.14 Entropy: -6387.71 Reduced chisqu: 1.69305 Num img pix: 1234 Num src pix: 211
+2015/05/13 19:43:51 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.23 Orient_Angle: 67 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:52 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1153 K
+2015/05/13 19:43:52 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 656, number overlap 656. Using multiply imaged pixels only: 0
+2015/05/13 19:43:52 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:52 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.245492
+2015/05/13 19:43:52 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1719.44 Entropy: -6422.12 Reduced chisqu: 1.69737 Num img pix: 1234 Num src pix: 214
+2015/05/13 19:43:52 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.23 Orient_Angle: 68 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:52 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1140 K
+2015/05/13 19:43:52 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 649, number overlap 649. Using multiply imaged pixels only: 0
+2015/05/13 19:43:52 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:52 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.199172
+2015/05/13 19:43:52 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1748.03 Entropy: -6505.4 Reduced chisqu: 1.7205 Num img pix: 1234 Num src pix: 211
+2015/05/13 19:43:52 lp_doParamSweep: Starting minimisation with lensoffset x: 0 offsety: 0 Critrad: 1.17 Ellipticity: 0.23 Orient_Angle: 69 Gamma: 0.58 Core_rad: 0.05
+2015/05/13 19:43:52 lv_createMappingMatrix: 4 percent of 14884 element I,J matrix was used. Total K,L memory used: 1147 K
+2015/05/13 19:43:52 mem_DoMEM: total non-masked image pixels: 1234, number of multiply imaged pixels: 653, number overlap 653. Using multiply imaged pixels only: 0
+2015/05/13 19:43:52 mem_DoMEM: starting MEM. Max iterations 100. Src default value: 0.1
+2015/05/13 19:43:53 mem_DoMEM: Finished after 101 iterations. Last TEST value was: 0.173081
+2015/05/13 19:43:53 lp_doParamSweep: MaxEn returned 0 Chi Squ: 1790.43 Entropy: -6526.67 Reduced chisqu: 1.76224 Num img pix: 1234 Num src pix: 211
+2015/05/13 19:43:53 main: Writing model images to file. Chisqu: 1676.69, ent: -6358.33
+2015/05/13 19:43:53 main: Freeing structures
