@@ -67,7 +67,9 @@ static  real_t   lm_calc_sersic_b(real_t m);
 static int	lm_CreateLMComp_SPEMD(lv_lensmodel_t *pLens,real_t fXoffset, real_t fYoffset, real_t fMassScaleFrom, 
 		real_t fMassScaleTo, real_t fMassScaleInc, real_t fEllipFrom, real_t fEllipTo, real_t fEllipInc,
 		real_t fAngleFrom, real_t fAngleTo, real_t fAngleInc, real_t fGammaFrom, real_t fGammaTo,
-		real_t fGammaInc, real_t fCoreFrom, real_t fCoreTo, real_t fCoreInc,real_t fCenterXFromm, real_t fCenterXTo, real_t fCenterXInc, real_t fCenterYFrom, real_t CenterYFrom, real_t CenterYTo, real_t CenterYInc);
+		real_t fGammaInc, real_t fCoreFrom, real_t fCoreTo, real_t fCoreInc,
+		real_t fCenterXFromm, real_t fCenterXTo, real_t fCenterXInc,
+		real_t fCenterYFrom, real_t CenterYTo, real_t CenterYInc);
 static int	lm_CreateLMComp_Ferrers(lv_lensmodel_t *pLens,real_t fXoffset, real_t fYoffset, real_t critfrom, real_t critto, real_t critinc, real_t AFrom, real_t ATo, real_t AInc, real_t BFrom, real_t BTo, real_t BInc, real_t Angfrom, real_t Angto, real_t Anginc);
 static int	lm_CreateLMComp_Userdef(lv_lensmodel_t *pLens,real_t fXoffset, real_t fYoffset, real_t critfrom, real_t critto, real_t critinc, real_t AFrom, real_t ATo, real_t AInc, lv_image_t *pDefX, lv_image_t *pDefY);
 static	double	lm_ferrersq10(real_t a, real_t b, double lambda);
@@ -1213,7 +1215,9 @@ Returns:
 static int	lm_CreateLMComp_SPEMD(lv_lensmodel_t *pLens,real_t fXoffset, real_t fYoffset, real_t fMassScaleFrom, 
 		real_t fMassScaleTo, real_t fMassScaleInc, real_t fEllipFrom, real_t fEllipTo, real_t fEllipInc,
 		real_t fAngleFrom, real_t fAngleTo, real_t fAngleInc, real_t fGammaFrom, real_t fGammaTo,
-				      real_t fGammaInc, real_t fCoreFrom, real_t fCoreTo, real_t fCoreInc，real_t fCenterXFromm, real_t fCenterXTo, real_t fCenterXInc, real_t fCenterYFrom, real_t CenterYFrom, real_t CenterYTo, real_t CenterYInc) {
+		real_t fGammaInc, real_t fCoreFrom, real_t fCoreTo, real_t fCoreInc,
+		real_t fCenterXFrom, real_t fCenterXTo, real_t fCenterXInc,
+		real_t fCenterYFrom, real_t fCenterYTo, real_t fCenterYInc) {
 
 	int		iStatus=0;
 	real_t	fromparams[LM_NPARAMS_SPEMD];

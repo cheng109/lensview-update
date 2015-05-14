@@ -1,0 +1,1 @@
+cc -O -I/Users/cheng109/work/phosim/phosim/source/cfitsio -I/opt/local/include -I/opt/local/fftw-2.1.5/rfftw -I/opt/local/fftw-2.1.5/fftw -L/Users/cheng109/work/phosim/phosim/source/cfitsio/lib -L/opt/local/lib   -c -o lv_lens.o lv_lens.c

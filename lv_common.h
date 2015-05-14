@@ -11,7 +11,7 @@ $Id: lv_common.h,v 1.20 2008/10/15 21:15:16 rwayth Exp rwayth $
 #define	HST_STIS_RESOLUTION		0.0507
 #define	ARCSEC_IN_RADIAN		4.84813e-06
 #define	MAX_FT_DIMENSION		4
-#define	MAX_LENSCOMP_PARAMS		5
+#define	MAX_LENSCOMP_PARAMS		7
 
 /*******************
 Structure definitions
