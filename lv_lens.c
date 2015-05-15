@@ -24,7 +24,7 @@ $Id: lv_lens.c,v 1.32 2008/10/31 20:43:10 rwayth Exp rwayth $
 #define	LM_NPARAMS_PTMASS	1
 #define	LM_NPARAMS_MASSSHEET	1
 #define	LM_NPARAMS_SPEMD	7
-#define	LM_NPARAMS_SIE		3
+#define	LM_NPARAMS_SIE		5
 #define	LM_NPARAMS_PIEP		4
 #define	LM_NPARAMS_EXPDISC	4
 #define	LM_NPARAMS_SIS		1
@@ -141,6 +141,8 @@ int lm_CalcDeflComponent(lv_lenscomp *pLensComp, real_t fX, real_t fY, real_t *p
 	fX -= g_PixelResn*pLensComp->fXoffset;
 	fY -= g_PixelResn*pLensComp->fYoffset;
 
+	
+		
 	switch(pLensComp->iType) {
 		case	LM_ISO_SPHERE:	 /* calculate for Isothermal sphere */
 			{
@@ -334,6 +336,8 @@ int lm_CalcDeflComponent(lv_lenscomp *pLensComp, real_t fX, real_t fY, real_t *p
 			/* parameters are: critrad, axratio, angle */
 			{
 				real_t	phi,root1mq,fq,fac,fCore=0,fCosTheta,fSinTheta,x1,y1,deltax1,deltay1;
+				fX -= g_PixelResn*pLensComp->fParameter[3];
+				fY -= g_PixelResn*pLensComp->fParameter[4];
 
 				if (fX == 0 && fY == 0) {
 					*pDeltaX = *pDeltaY = pLensComp->fParameter[0];
@@ -720,9 +724,12 @@ lv_lensmodel_t *lm_ReadLensFile(char	*strFile) {
 					{
 						double	xoff=0,yoff=0,critfrom=0,critto=0,critinc=0,axfrom=0,axto=0,axinc=0;
 						double	angfrom=0,angto=0,anginc=0;
+						double  centerXfrom =0, centerXto=0, centerXinc = 0;
+						double  centerYfrom =0, centerYto=0, centerYinc = 0;
 
-						nconv = sscanf(pStartParam+1,"(%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf)",
-                                       &xoff,&yoff,&critfrom,&critto, &critinc, &axfrom,&axto,&axinc,&angfrom,&angto,&anginc);
+						nconv = sscanf(pStartParam+1,"(%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf)",
+							       &xoff,&yoff,&critfrom,&critto, &critinc, &axfrom,&axto,&axinc,&angfrom,&angto,&anginc,
+							       &centerXfrom, &centerXto, &centerXinc, &centerYfrom, &centerYto, &centerYinc);
 
 						if (nconv < LM_NPARAMS_SIE*3+2) {
 							fprintf(stderr,"Parameter conversion failed for lens type %d. params were: <%s>\n",iCompType,pStartParam+1);
@@ -730,7 +737,8 @@ lv_lensmodel_t *lm_ReadLensFile(char	*strFile) {
 							break;
 						}
 
-						iStatus = lm_CreateLMComp_SIE(pLens,xoff,yoff,critfrom,critto,critinc,axfrom,axto,axinc, angfrom,angto,anginc);
+						iStatus = lm_CreateLMComp_SIE(pLens,xoff,yoff,critfrom,critto,critinc,axfrom,axto,axinc, angfrom,angto,anginc,
+									      centerXfrom, centerXto, centerXinc, centerYfrom, centerYto, centerYinc);
 					}
 					break;
 
@@ -738,12 +746,13 @@ lv_lensmodel_t *lm_ReadLensFile(char	*strFile) {
 					{
 						double	xoff=0,yoff=0,critfrom=0,critto=0,critinc=0,ellfrom=0,ellto=0,ellinc=0;
 						double	angfrom=0,angto=0,anginc=0,corefrom=0,coreto=0,coreinc=0,gammfrom=0,gammto=0,gamminc=0;
-                        double  centerXfrom =0, centerXto=0, centerXinc = 0;
-                        double  centerYfrom =0, centerYto=0, centerYinc = 0;
+						double  centerXfrom =0, centerXto=0, centerXinc = 0;
+						double  centerYfrom =0, centerYto=0, centerYinc = 0;
 
 						nconv = sscanf(pStartParam+1,"(%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf)",
-                                       &xoff,&yoff,&critfrom,&critto, &critinc,&ellfrom,&ellto,&ellinc,
-                                       &angfrom,&angto,&anginc,&gammfrom,&gammto,&gamminc,&corefrom,&coreto,&coreinc, &centerXfrom, &centerXto, &centerXinc, &centerYfrom, &centerYto, &centerYinc);
+							       &xoff,&yoff,&critfrom,&critto, &critinc,&ellfrom,&ellto,&ellinc,
+							       &angfrom,&angto,&anginc,&gammfrom,&gammto,&gamminc,&corefrom,&coreto,&coreinc,
+							       &centerXfrom, &centerXto, &centerXinc, &centerYfrom, &centerYto, &centerYinc);
 
 						if (nconv < LM_NPARAMS_SPEMD*3+2) {
 							fprintf(stderr,"Parameter conversion failed for lens type %d. params were: <%s>\n",iCompType,pStartParam+1);
@@ -1273,10 +1282,7 @@ static int	lm_CreateLMComp_SPEMD(lv_lensmodel_t *pLens,real_t fXoffset, real_t f
 	LOG_ERR("this lens model is not available");
 	iStatus=1;
 	*/
-
-
-
-EXIT:
+ EXIT:
 	TRACE_OUT;
 	return iStatus;
 }
@@ -1418,14 +1424,17 @@ Arguments:
 Returns:
 ****************************/
 int	lm_CreateLMComp_SIE(lv_lensmodel_t *pLens,real_t fXoffset, real_t fYoffset, real_t fMassScaleFrom, 
-		real_t fMassScaleTo, real_t fMassScaleInc, real_t fAxFrom, real_t fAxTo, real_t fAxInc,
-		real_t fAngleFrom, real_t fAngleTo, real_t fAngleInc) {
+			    real_t fMassScaleTo, real_t fMassScaleInc, real_t fAxFrom, real_t fAxTo, real_t fAxInc,
+			    real_t fAngleFrom, real_t fAngleTo, real_t fAngleInc,
+			    real_t fCenterXFrom, real_t fCenterXTo, real_t fCenterXInc,
+			    real_t fCenterYFrom, real_t fCenterYTo, real_t fCenterYInc){
 
-	int		iStatus=0;
+
+        int		iStatus=0;
 	real_t	fromparams[LM_NPARAMS_SIE];
 	real_t	toparams[LM_NPARAMS_SIE];
 	real_t	incparams[LM_NPARAMS_SIE];
-	char	*strNames[LM_NPARAMS_SIE] = {"Critrad","Axis_ratio","Orient_Angle"};
+	char	*strNames[LM_NPARAMS_SIE] = {"Critrad","Axis_ratio","Orient_Angle", "CenterX", "CenterY"};
 
 	TRACE_IN(lm_CreateLMComp_SIE);
 
@@ -1439,20 +1448,28 @@ int	lm_CreateLMComp_SIE(lv_lensmodel_t *pLens,real_t fXoffset, real_t fYoffset, 
 	fromparams[0] = fMassScaleFrom;
 	fromparams[1] = fAxFrom;
 	fromparams[2] = fAngleFrom;
-
+	fromparams[3] = fCenterXFrom;
+	fromparams[4] = fCenterYFrom;
+	
+	
 	toparams[0] = fMassScaleTo;
 	toparams[1] = fAxTo;
 	toparams[2] = fAngleTo;
+	toparams[3] = fCenterXTo;
+	toparams[4] = fCenterYTo; 
 
+	
 	incparams[0] = fMassScaleInc;
 	incparams[1] = fAxInc;
 	incparams[2] = fAngleInc;
+	incparams[3] = fCenterXInc;
+	incparams[4] = fCenterYInc;
 
 	pLens->iNumParameters +=LM_NPARAMS_SIE+2;
 
 	iStatus = lm_InitLensModel(pLens, LM_SIE, fXoffset, fYoffset, LM_NPARAMS_SIE, fromparams, toparams, incparams,strNames);
 	if (iStatus==0) {
-		sprintf(strMessage,"Created SIE lens model component. offset: (%.2f,%.2f), Critrad: %g-%g +%g Axratio: %g-%g +%g, Angle: %.1f-%.1f +%.1f",fXoffset,fYoffset,fMassScaleFrom, fMassScaleTo, fMassScaleInc, fAxFrom, fAxTo, fAxInc, fAngleFrom, fAngleTo, fAngleInc);
+	  sprintf(strMessage,"Created SIE lens model component. offset: (%.2f,%.2f), Critrad: %g-%g +%g Axratio: %g-%g +%g, Angle: %.1f-%.1f +%.1f, CenterX: %.3f-%.3f +%.3f, CenterY: %.3f-%.3f +%.3f",fXoffset,fYoffset,fMassScaleFrom, fMassScaleTo, fMassScaleInc, fAxFrom, fAxTo, fAxInc, fAngleFrom, fAngleTo, fAngleInc,fCenterXFrom, fCenterXTo, fCenterXInc,fCenterYFrom, fCenterYTo, fCenterYInc);
 		TRACE(LOG_HIGH_PRI,strMessage);
 	}
 
