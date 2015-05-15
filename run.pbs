@@ -1,0 +1,15 @@
+#!/bin/bash
+#PBS -q physics
+#PBS -l mem=35GB
+#PBS -l nodes=4:ppn=2
+#PBS -l walltime=25:00:00
+
+cd example/
+./lensview -logfilepath . -tracelevel 2 -pixelres 0.05 -datafile img_s6_mag5.fits -sourcefile source15x15empty.fits -psffile acs_wfc_psf_11x11.fits -nice 2 -pixelratio 3 -maxiter 100 -paramfile comps_1.txt -srcxoffset 4 -srcyoffset 5 -useminfinder -srcdefaultval 0.1 -noisefile var_s6_mag5.fits -targetchisqu 1000 -mask mask_s3.fits $*
+./lensview -logfilepath . -tracelevel 2 -pixelres 0.05 -datafile img_s6_mag5.fits -sourcefile source15x15empty.fits -psffile acs_wfc_psf_11x11.fits -nice 2 -pixelratio 3 -maxiter 100 -paramfile comps_2.txt -srcxoffset 4 -srcyoffset 5 -useminfinder -srcdefaultval 0.1 -noisefile var_s6_mag5.fits -targetchisqu 1000 -mask mask_s3.fits $*
+./lensview -logfilepath . -tracelevel 2 -pixelres 0.05 -datafile img_s6_mag5.fits -sourcefile source15x15empty.fits -psffile acs_wfc_psf_11x11.fits -nice 2 -pixelratio 3 -maxiter 100 -paramfile comps_3.txt -srcxoffset 4 -srcyoffset 5 -useminfinder -srcdefaultval 0.1 -noisefile var_s6_mag5.fits -targetchisqu 1000 -mask mask_s3.fits $*
+./lensview -logfilepath . -tracelevel 2 -pixelres 0.05 -datafile img_s6_mag5.fits -sourcefile source15x15empty.fits -psffile acs_wfc_psf_11x11.fits -nice 2 -pixelratio 3 -maxiter 100 -paramfile comps_4.txt -srcxoffset 4 -srcyoffset 5 -useminfinder -srcdefaultval 0.1 -noisefile var_s6_mag5.fits -targetchisqu 1000 -mask mask_s3.fits $*
+./lensview -logfilepath . -tracelevel 2 -pixelres 0.05 -datafile img_s6_mag5.fits -sourcefile source15x15empty.fits -psffile acs_wfc_psf_11x11.fits -nice 2 -pixelratio 3 -maxiter 100 -paramfile comps_5.txt -srcxoffset 4 -srcyoffset 5 -useminfinder -srcdefaultval 0.1 -noisefile var_s6_mag5.fits -targetchisqu 1000 -mask mask_s3.fits $*
+./lensview -logfilepath . -tracelevel 2 -pixelres 0.05 -datafile img_s6_mag5.fits -sourcefile source15x15empty.fits -psffile acs_wfc_psf_11x11.fits -nice 2 -pixelratio 3 -maxiter 100 -paramfile comps_6.txt -srcxoffset 4 -srcyoffset 5 -useminfinder -srcdefaultval 0.1 -noisefile var_s6_mag5.fits -targetchisqu 1000 -mask mask_s3.fits $*
+./lensview -logfilepath . -tracelevel 2 -pixelres 0.05 -datafile img_s6_mag5.fits -sourcefile source15x15empty.fits -psffile acs_wfc_psf_11x11.fits -nice 2 -pixelratio 3 -maxiter 100 -paramfile comps_7.txt -srcxoffset 4 -srcyoffset 5 -useminfinder -srcdefaultval 0.1 -noisefile var_s6_mag5.fits -targetchisqu 1000 -mask mask_s3.fits $*
+
