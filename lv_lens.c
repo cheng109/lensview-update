@@ -21,7 +21,7 @@ $Id: lv_lens.c,v 1.32 2008/10/31 20:43:10 rwayth Exp rwayth $
  * will need to be changed in lv_common.h */
 #define	LM_NPARAMS_EXTSH	2
 #define	LM_NPARAMS_NFW		4
-#define	LM_NPARAMS_PTMASS	1
+#define	LM_NPARAMS_PTMASS	3
 #define	LM_NPARAMS_MASSSHEET	1
 #define	LM_NPARAMS_SPEMD	7
 #define	LM_NPARAMS_SIE		5
@@ -205,6 +205,10 @@ int lm_CalcDeflComponent(lv_lenscomp *pLensComp, real_t fX, real_t fY, real_t *p
 			{
 				real_t	fDenom =0, fMult=0;
 				/* NOTE this is r squared. */
+                
+                fX -= g_PixelResn*pLensComp->fParameter[1];
+                fY -= g_PixelResn*pLensComp->fParameter[2];
+
 				fDenom = (fX*fX + fY*fY);
 
 				if (fDenom == 0.0) {
@@ -768,15 +772,17 @@ lv_lensmodel_t *lm_ReadLensFile(char	*strFile) {
 				case	LM_PTMASS:
 					{
 						double	xoff=0,yoff=0,critfrom=0,critto=0,critinc=0;
-
-						nconv = sscanf(pStartParam+1,"(%lf,%lf,%lf,%lf,%lf)",&xoff,&yoff,&critfrom,&critto, &critinc);
+                        double  centerXfrom =0, centerXto=0, centerXinc = 0;
+                        double  centerYfrom =0, centerYto=0, centerYinc = 0;
+						nconv = sscanf(pStartParam+1,"(%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf)",&xoff,&yoff,&critfrom,&critto, &critinc,
+                                       &centerXfrom, &centerXto, &centerXinc, &centerYfrom, &centerYto, &centerYinc);
 
 						if (nconv < LM_NPARAMS_PTMASS*3 + 2) {
-							fprintf(stderr,"Parameter conversion failed for lens type %d. params were: <%s>\n",iCompType,pStartParam+1);
+                            fprintf(stderr,"Parameter conversion failed for lens type %d. params were: <%s>\n",iCompType,pStartParam+1);
 							iStatus = 1;
 							break;
 						}
-						iStatus = lm_CreateLMComp_PtMass(pLens,xoff,yoff,critfrom,critto,critinc);
+						iStatus = lm_CreateLMComp_PtMass(pLens,xoff,yoff,critfrom,critto,critinc, centerXfrom, centerXto, centerXinc, centerYfrom, centerYto, centerYinc);
 					}
 					break;
 
@@ -1178,18 +1184,36 @@ Arguments:
 Returns:
 ****************************/
 int	lm_CreateLMComp_PtMass(lv_lensmodel_t *pLens, real_t fXoffset, real_t fYoffset, real_t fMassFrom,
-	real_t fMassTo, real_t fMassInc) {
+                           real_t fMassTo, real_t fMassInc,
+                           real_t fCenterXFrom, real_t fCenterXTo, real_t fCenterXInc,
+                           real_t fCenterYFrom, real_t fCenterYTo, real_t fCenterYInc) {
 	int		iStatus=0;
-	char	*strNames[LM_NPARAMS_PTMASS] = {"Critrad"};
+    real_t	fromparams[LM_NPARAMS_PTMASS];
+    real_t	toparams[LM_NPARAMS_PTMASS];
+    real_t	incparams[LM_NPARAMS_PTMASS];
+	char	*strNames[LM_NPARAMS_PTMASS] = {"Critrad", "CenterX", "CenterY"};
+
+    fromparams[0] = fMassFrom;
+    fromparams[1] = fCenterXFrom;
+    fromparams[2] = fCenterYFrom;
+    
+    toparams[0] = fMassTo;
+    toparams[1] = fCenterXTo;
+    toparams[2] = fCenterYTo;
+    
+    incparams[0] = fMassInc;
+    incparams[1] = fCenterXInc;
+    incparams[2] = fCenterYInc;
 
 	TRACE_IN(lm_CreateLMComp_PtMass);
 
 	pLens->iNumParameters += LM_NPARAMS_PTMASS+2;
 
-	iStatus = lm_InitLensModel(pLens, LM_PTMASS, fXoffset, fYoffset, LM_NPARAMS_PTMASS, &fMassFrom, &fMassTo, &fMassInc,strNames);
-
-	sprintf(strMessage,"Created lens model type %d with offset (%g,%g). params: mass from: %g, mass to: %g, mass inc: %g"
-				,LM_PTMASS,fXoffset,fYoffset,fMassFrom,fMassTo,fMassInc);
+	//iStatus = lm_InitLensModel(pLens, LM_PTMASS, fXoffset, fYoffset, LM_NPARAMS_PTMASS, &fMassFrom, &fMassTo, &fMassInc,strNames);
+    iStatus = lm_InitLensModel(pLens, LM_PTMASS, fXoffset, fYoffset, LM_NPARAMS_PTMASS, fromparams, toparams, incparams,strNames);
+    
+	sprintf(strMessage,"Created lens model type %d with offset (%g,%g). params: mass from: %g, mass to: %g, mass inc: %g, CenterX: %.3f-%.3f +%.3f, CenterY: %.3f-%.3f +%.3f"
+				,LM_PTMASS,fXoffset,fYoffset,fMassFrom,fMassTo,fMassInc,fCenterXFrom, fCenterXTo, fCenterXInc,fCenterYFrom, fCenterYTo, fCenterYInc);
 	TRACE(LOG_HIGH_PRI,strMessage);
 
 	TRACE_OUT;
