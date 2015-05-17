@@ -35,8 +35,8 @@ Private Global Variables
 
 int	main(int argc, char * const argv[]) {
 
-	char	strOutputMappedFileName[] = "model_img.fits", strOutputImageFile[PATH_MAX]="test_image.fits";
-	char	strOutputSourceFile[]="model_src.fits", strOutSrcMagFilename[] = "mag_src.fits";
+	char	strOutputMappedFileName[PATH_MAX] = "model_img.fits", strOutputImageFile[PATH_MAX]="test_image.fits";
+	char	strOutputSourceFile[PATH_MAX]="model_src.fits", strOutSrcMagFilename[] = "mag_src.fits";
 	char	*strOptionString,strTempLogFilePath[PATH_MAX]="./", strSourceFileName[PATH_MAX] = "";
 	char	strPsfFilename[PATH_MAX] = "", strDataFileName[PATH_MAX] = "", strNoiseFileName[PATH_MAX]="";
 	char	strOutImgMagFilename[] = "mag_img_inv.fits", strParamFile[PATH_MAX] = "comps.txt";
@@ -57,7 +57,7 @@ int	main(int argc, char * const argv[]) {
 	struct	utsname	mach_name;
 	cl_pix_list cl_list_head = {0,0,0,0,NULL}, caust_list_head = {0,0,0,0,NULL};
 	int	i; 
-
+    int numJobs = 1;
 /*
 	printf("Hello world...\n");
 	printf("sizeof int: %d, sizeof long: %d, sizeof short: %d, sizeof *: %d, float: %d, double: %d\n",(int)sizeof(int), (int)sizeof(long),(int) sizeof(short),(int) sizeof(void *),(int) sizeof(float), (int)sizeof(double));
@@ -66,11 +66,35 @@ int	main(int argc, char * const argv[]) {
 
 	g_iTracePriority = LOG_LOW_PRI;
 
-	strOptionString = "%-imgfile%s%-logfilepath%s%-srcxoffset%f%-srcyoffset%f%-tracelevel%i%-raytraceonly%t%-sourcefile%s%-psffile%s%-datafile%s%-dofit%t%-nice%i%-pixelratio%f%-maxiter%i%-pixelres%f%-noisefile%s%-makemag%t%-dumpimg%t%-paramfile%s%-fixlambda%f%-srcdefaultval%f%-mask%s%-useconjgrad%t%-normalisepsfmax%t%-debugimgs%t%-targetchisqu%f%-usemultimgpix%t%-constvariance%f%-searchcentre%t%-searchcentrerange%f%-searchcentrestep%f%-useminfinder%t";
+	strOptionString = "%-imgfile%s%-logfilepath%s%-srcxoffset%f%-srcyoffset%f%-tracelevel%i%-raytraceonly%t%-sourcefile%s%-psffile%s%-datafile%s%-dofit%t%-nice%i%-pixelratio%f%-maxiter%i%-pixelres%f%-noisefile%s%-makemag%t%-dumpimg%t%-paramfile%s%-fixlambda%f%-srcdefaultval%f%-mask%s%-useconjgrad%t%-normalisepsfmax%t%-debugimgs%t%-targetchisqu%f%-usemultimgpix%t%-constvariance%f%-searchcentre%t%-searchcentrerange%f%-searchcentrestep%f%-useminfinder%t%-numJobs%d%t";
 
 	iStatus = parse_options(argc, argv,strOptionString ,strOutputImageFile, strTempLogFilePath, &x_axisoffset,&y_axisoffset,&g_iTracePriority,&iRayTraceOnly, strSourceFileName, strPsfFilename,strDataFileName,&iMinimise,&iNicePri,&fPixelResnRatio,&iMaxIterations, &g_PixelResn,strNoiseFileName,&iMakeSrcInvMagMap,&iDumpImgs,strParamFile,&g_FixedLambda,&fSrcDefaultVal,strMaskName,&iMethod,&iNormaliseMax,&g_iDebugImgs,&g_fTargetChiSqu,&g_bUseMultImgPixOnly,&fConstVar,&iSearchCentre,&fSearchCentreRange,&fSearchCentreStep,&iUseMinFinder);
+    
+    
+    
+    
+    
+    // Jun Cheng's update begin:
+    char dynamicOutputModelImage[PATH_MAX] = "model_img_";
+    strcat(dynamicOutputModelImage, strParamFile);
+    strcat(dynamicOutputModelImage, ".fits");
+   
+    char dynamicOutputMaskImage[PATH_MAX] = "imgmask_";
+    strcat(dynamicOutputMaskImage, strParamFile);
+    strcat(dynamicOutputMaskImage, ".fits");
+    
+    char dynamicOutputSourceImage[PATH_MAX] = "model_src_";
+    strcat(dynamicOutputSourceImage, strParamFile);
+    strcat(dynamicOutputSourceImage, ".fits");
+    
+    char dynamicOutputResidulImage[PATH_MAX] = "model_res_";
+    strcat(dynamicOutputResidulImage, strParamFile);
+    strcat(dynamicOutputResidulImage, ".fits");
 
-	if (argc == 1 || iStatus != 0 ) {
+    // Jun Cheng's update end:
+	
+    
+    if (argc == 1 || iStatus != 0 ) {
 	  printUsage(argc,argv);
 	}
 
@@ -357,7 +381,7 @@ goto EXIT;
 	if (iRayTraceOnly ==0 && iMakeSrcInvMagMap && iMinimise==FALSE && iUseMinFinder == FALSE) {
 		TRACE(LOG_HIGH_PRI,"Creating and writing source plane inverse magnification map");
 		pInvMag = img_CalcSrcPlaneMag(pWeightMatrix,pSourceOriginal->fPixelAngSize, g_PixelResn);
-		lv_write_image_to_file(pInvMag,strOutSrcMagFilename,TRUE);
+        lv_write_image_to_file(pInvMag,strOutSrcMagFilename,TRUE);
 		for (i=0; i< img_CalcImgSize(pInvMag); i++) pInvMag->pImage[i] = pWeightMatrix->pSumSrc[i];
 		lv_write_image_to_file(pInvMag,"src_sum.fits",TRUE);
 		lv_free_image_struct(pInvMag);
@@ -390,10 +414,18 @@ goto EXIT;
 	if (iRayTraceOnly ==0) {
 	    /* with no minimisation, result is a projected image */
 	    if (iRayTraceOnly ==0 && iMinimise == FALSE) {
-	        if (pMappedImage != NULL) lv_write_image_to_file(pMappedImage,strOutputMappedFileName, TRUE);
+	        //if (pMappedImage != NULL) lv_write_image_to_file(pMappedImage,strOutputMappedFileName, TRUE);
+            if (pMappedImage != NULL) lv_write_image_to_file(pMappedImage,dynamicOutputModelImage, TRUE);
 	    }
-		if (pBestImg != NULL) lv_write_image_to_file(pBestImg,strOutputMappedFileName, TRUE);
-        if (pBestSrc != NULL) lv_write_image_to_file(pBestSrc,strOutputSourceFile,TRUE);
+		//if (pBestImg != NULL) lv_write_image_to_file(pBestImg,strOutputMappedFileName, TRUE);
+        if (pBestImg != NULL) {
+            lv_write_image_to_file(pBestImg,dynamicOutputModelImage, TRUE);
+            lv_image_t *residual = lv_residual_img_file(pReadImg, pBestImg);
+            lv_write_image_to_file(residual, dynamicOutputResidulImage, TRUE);
+            lv_free_image_struct(residual);
+        }
+        //if (pBestSrc != NULL) lv_write_image_to_file(pBestSrc,strOutputSourceFile,TRUE);
+        if (pBestSrc != NULL) lv_write_image_to_file(pBestSrc,dynamicOutputSourceImage,TRUE);
         imgDumpMask(pMappedImage);
 	}
 	else {

@@ -1072,6 +1072,40 @@ EXIT:
 	return iStatus;
 }
 
+/***************************
+ Added by Jun Cheng
+ Function:	lv_residual_img_file
+ Description:	Get residual of two fits images
+ Arguments:	 <lv_image_t input> <lv_image_t model>
+ Returns:	<lv_image_t residual> or NULL on failure.
+ ****************************/
+lv_image_t * lv_residual_img_file(lv_image_t *inputImage, lv_image_t *modelImage) {
+    lv_image_t * residulImage = lv_duplicate_image(inputImage);
+/*    lv_image_t residulImage;
+    residulImage.iNumAxes = inputImage->iNumAxes;
+    residulImage.iPixelDepth = inputImage->iPixelDepth;
+    residulImage.iFitsBitPix = inputImage->iFitsBitPix;
+    residulImage.iTableDataType = inputImage->iTableDataType;
+    residulImage.fPixelAngSize = inputImage->fPixelAngSize;
+    residulImage.fDefaultVal = inputImage->fDefaultVal;
+  */
+    size_t imageSize = inputImage->pAxisSize[0]*inputImage->pAxisSize[1]; 
+      for(int i=0; i<imageSize; ++i) {
+          residulImage->pImage[i] = inputImage->pImage[i]-modelImage->pImage[i] ;
+      }
+       
+    return residulImage;
+    
+  
+}
+
+
+
+
+
+
+
+
 
 /***************************
 Function:	lv_read_img_file

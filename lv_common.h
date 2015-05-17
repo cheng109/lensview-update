@@ -54,7 +54,7 @@ typedef struct _lv_image_t {
 	void	*ftInfo;
 	bool	*pMask;		/* optional mask array. If mask value = TRUE, then use this pixel. If FALSE, ignore pixel*/
 	bool	bExternalMask;
-}	lv_image_t;
+   }	lv_image_t;
 
 typedef	struct	_lv_lenscomponent_t {
 	int		iType;
@@ -118,6 +118,7 @@ int		lv_projectSourceThruMapMatrix(lv_image_t *pSource, lv_image_t *pImage, lv_m
 int		lv_write_image_to_file(lv_image_t *pImagePtr, char  *strFileName, bool	bOverwriteFile);
 lv_image_t	*lv_read_img_file(char   *strFileName, real_t fPixelRes);
 
+lv_image_t  *lv_residual_img_file(lv_image_t *inputImage, lv_image_t *modelImage);
 lv_image_t	*lv_create_image_struct(lv_axissize_t iXDimension, lv_axissize_t iYDimension, int iFitsPixelType, real_t fPixelAngSize);
 lv_image_t	*lv_duplicate_image(lv_image_t *pImage);
 void    	lv_free_image_struct(lv_image_t *pImagePtr);
