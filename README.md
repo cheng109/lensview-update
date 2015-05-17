@@ -1,16 +1,13 @@
-############ UPDATEs from Jun Cheng ############
+UPDATEs from Jun Cheng
+======================
 Models modified:  
-..*SIE
-..*NFW
-..*SPEMD
-..*PTMASS
-
-
-
-
-
+-SIE
+-NFW
+-SPEMD
+-PTMASS
 
 Lensview: Software for modelling resolved gravitational lenses.
+===============================================================
 Copyright (C) 2006-2008. Randall Wayth.
 
 This program is free software; you can redistribute it and/or
