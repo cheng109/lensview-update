@@ -1,10 +1,10 @@
 UPDATEs from Jun Cheng
 ======================
 Models modified:  
--SIE
--NFW
--SPEMD
--PTMASS
+- SIE
+- NFW
+- SPEMD
+- PTMASS
 
 Lensview: Software for modelling resolved gravitational lenses.
 ===============================================================
