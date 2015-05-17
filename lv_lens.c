@@ -20,7 +20,7 @@ $Id: lv_lens.c,v 1.32 2008/10/31 20:43:10 rwayth Exp rwayth $
 /* NOTE: if any lens model has > 5 params, then MAX_LENSCOMP_PARAMS
  * will need to be changed in lv_common.h */
 #define	LM_NPARAMS_EXTSH	2
-#define	LM_NPARAMS_NFW		4
+#define	LM_NPARAMS_NFW		6
 #define	LM_NPARAMS_PTMASS	3
 #define	LM_NPARAMS_MASSSHEET	1
 #define	LM_NPARAMS_SPEMD	7
@@ -292,7 +292,8 @@ int lm_CalcDeflComponent(lv_lenscomp *pLensComp, real_t fX, real_t fY, real_t *p
 			/* parameters:  mass scale, scale len, ellipticity, orientation_angle */
 			{
 				real_t	fEllip,fCosTheta,fSinTheta,x1,y1,fPhi,fAngRadius,fTempResult,fCosPhi,fSinPhi,fScale;
-
+                fX -= g_PixelResn*pLensComp->fParameter[4];
+                fY -= g_PixelResn*pLensComp->fParameter[5];
 				/* pre-calculate constants */
 				fCosTheta = cos(pLensComp->fParameter[3]*M_PI/180);
 				fSinTheta = sin(pLensComp->fParameter[3]*M_PI/180);
@@ -820,17 +821,18 @@ lv_lensmodel_t *lm_ReadLensFile(char	*strFile) {
 					{
 						double	xoff=0,yoff=0,massfrom=0,massto=0,massinc=0,scalefrom=0,scaleto=0,scaleinc=0;
 						double	ellfrom=0,ellto=0,ellinc=0, angfrom=0,angto=0,anginc=0;
-
-						nconv = sscanf(pStartParam+1,"(%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf)",
+                        double  centerXfrom =0, centerXto=0, centerXinc = 0;
+                        double  centerYfrom =0, centerYto=0, centerYinc = 0;
+						nconv = sscanf(pStartParam+1,"(%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf)",
                                        &xoff,&yoff,&massfrom,&massto,&massinc,&scalefrom,&scaleto,&scaleinc,
-                                       &ellfrom,&ellto,&ellinc,&angfrom,&angto,&anginc);
+                                       &ellfrom,&ellto,&ellinc,&angfrom,&angto,&anginc,&centerXfrom, &centerXto, &centerXinc, &centerYfrom, &centerYto, &centerYinc);
 						if (nconv < LM_NPARAMS_NFW*3+2) {
 							fprintf(stderr,"Parameter conversion failed for lens type %d. params were: <%s>\n",iCompType,pStartParam+1);
 							iStatus = 1;
 							break;
 						}
 						iStatus = lm_CreateLMComp_NFW(pLens,xoff,yoff,massfrom,massto,massinc,scalefrom,scaleto,scaleinc,
-							ellfrom,ellto,ellinc,angfrom,angto,anginc);
+							ellfrom,ellto,ellinc,angfrom,angto,anginc,centerXfrom, centerXto, centerXinc, centerYfrom, centerYto, centerYinc);
 					}
 					break;
 				case	LM_SERSIC:
@@ -1127,12 +1129,14 @@ Returns:
 ****************************/
 int	lm_CreateLMComp_NFW(lv_lensmodel_t *pLens, real_t fXoffset, real_t fYoffset, real_t fMassScaleFrom,
 		real_t fMassScaleTo, real_t fMassScaleInc, real_t fScaleLenFrom, real_t fScaleLenTo, real_t fScaleLenInc,
-		real_t fEllipFrom, real_t fEllipTo, real_t fEllipInc, real_t fAngleFrom, real_t fAngleTo, real_t fAngleInc) {
+		real_t fEllipFrom, real_t fEllipTo, real_t fEllipInc, real_t fAngleFrom, real_t fAngleTo, real_t fAngleInc,
+                        real_t fCenterXFrom, real_t fCenterXTo, real_t fCenterXInc,
+                        real_t fCenterYFrom, real_t fCenterYTo, real_t fCenterYInc) {
 	int		iStatus=0;
 	real_t	fromparams[LM_NPARAMS_NFW];
 	real_t	toparams[LM_NPARAMS_NFW];
 	real_t	incparams[LM_NPARAMS_NFW];
-	char	*strNames[LM_NPARAMS_NFW] = {"Mass_scale","Scale_length","Ellipticity","Angle"};
+	char	*strNames[LM_NPARAMS_NFW] = {"Mass_scale","Scale_length","Ellipticity","Angle", "CenterX", "CenterY"};
 
 	TRACE_IN(lm_CreateLMComp_NFW);
 
@@ -1153,22 +1157,31 @@ int	lm_CreateLMComp_NFW(lv_lensmodel_t *pLens, real_t fXoffset, real_t fYoffset,
 	fromparams[1] = fScaleLenFrom;
 	fromparams[2] = fEllipFrom;
 	fromparams[3] = fAngleFrom;
+    fromparams[4] = fCenterXFrom;
+    fromparams[5] = fCenterYFrom;
+    
 	toparams[0] = fMassScaleTo;
 	toparams[1] = fScaleLenTo;
 	toparams[2] = fEllipTo;
 	toparams[3] = fAngleTo;
+    toparams[4] = fCenterXTo;
+    toparams[5] = fCenterYTo;
+    
 	incparams[0] = fMassScaleInc;
 	incparams[1] = fScaleLenInc;
 	incparams[2] = fEllipInc;
 	incparams[3] = fAngleInc;
+    incparams[4] = fCenterXInc;
+    incparams[5] = fCenterYInc;
+    
 
 	pLens->iNumParameters +=LM_NPARAMS_NFW+2;
 
 	iStatus = lm_InitLensModel(pLens, LM_NFW,fXoffset,fYoffset, LM_NPARAMS_NFW, fromparams, toparams, incparams,strNames);
 
-	sprintf(strMessage,"Created lens model type %d with offset (%g,%g). params: mass from: %g, mass to: %g, mass inc: %g, scale_len from: %g, to: %g, inc: %g, ellipticity from: %g, to: %g inc: %g, angle from: %g, to: %g, inc: %g",LM_NFW,fXoffset,fYoffset,
+	sprintf(strMessage,"Created lens model type %d with offset (%g,%g). params: mass from: %g, mass to: %g, mass inc: %g, scale_len from: %g, to: %g, inc: %g, ellipticity from: %g, to: %g inc: %g, angle from: %g, to: %g, inc: %g, CenterX: %.3f-%.3f +%.3f, CenterY: %.3f-%.3f +%.3f",LM_NFW,fXoffset,fYoffset,
 		fMassScaleFrom,fMassScaleTo,fMassScaleInc,fScaleLenFrom,fScaleLenTo,fScaleLenInc,fEllipFrom,fEllipTo,fEllipInc,
-		fAngleFrom,fAngleTo,fAngleInc);
+		fAngleFrom,fAngleTo,fAngleInc,fCenterXFrom, fCenterXTo, fCenterXInc,fCenterYFrom, fCenterYTo, fCenterYInc );
 	TRACE(LOG_HIGH_PRI,strMessage);
 
 EXIT:

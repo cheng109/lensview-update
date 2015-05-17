@@ -58,7 +58,9 @@ int lm_CreateLMComp_ExtShear(lv_lensmodel_t *pLens, real_t fShearFrom, real_t fS
     real_t fAnlgeFrom, real_t fAngleTo, real_t fAngleInc);
 int lm_CreateLMComp_NFW(lv_lensmodel_t *pLens, real_t fXoffset, real_t fYoffset, real_t fMassScaleFrom,
 	real_t fMassScaleTo, real_t fMassScaleInc, real_t fScaleLenFrom, real_t fScaleLenTo, real_t fScaleLenInc,
-	real_t fEllipFrom, real_t fEllipTo, real_t fEllipInc, real_t fAngleFrom, real_t fAngleTo, real_t fAngleInc);
+	real_t fEllipFrom, real_t fEllipTo, real_t fEllipInc, real_t fAngleFrom, real_t fAngleTo, real_t fAngleInc,
+                        real_t fCenterXFromm, real_t fCenterXTo, real_t fCenterXInc,
+                        real_t fCenterYFrom, real_t CenterYTo, real_t CenterYInc);
 int lm_CreateLMComp_PtMass(lv_lensmodel_t *pLens, real_t fXoffset, real_t fYoffset, real_t fMassFrom, real_t fMassTo, real_t fMassInc,
                            real_t fCenterXFromm, real_t fCenterXTo, real_t fCenterXInc,
                            real_t fCenterYFrom, real_t CenterYTo, real_t CenterYInc);
