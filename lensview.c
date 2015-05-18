@@ -32,6 +32,8 @@ void printUsage(int argc, char * const argv[]);
 /**************************
 Private Global Variables
 **************************/
+//extern char    strParamFile[PATH_MAX] = "comps.txt";
+
 
 int	main(int argc, char * const argv[]) {
 
@@ -39,7 +41,8 @@ int	main(int argc, char * const argv[]) {
 	char	strOutputSourceFile[PATH_MAX]="model_src.fits", strOutSrcMagFilename[] = "mag_src.fits";
 	char	*strOptionString,strTempLogFilePath[PATH_MAX]="./", strSourceFileName[PATH_MAX] = "";
 	char	strPsfFilename[PATH_MAX] = "", strDataFileName[PATH_MAX] = "", strNoiseFileName[PATH_MAX]="";
-	char	strOutImgMagFilename[] = "mag_img_inv.fits", strParamFile[PATH_MAX] = "comps.txt";
+	char	strOutImgMagFilename[] = "mag_img_inv.fits";
+    char    strParamFile[PATH_MAX] = "comps.txt";
 	char	strMaskName[PATH_MAX]="";
 	int		iStatus=0,iRayTraceOnly=FALSE,iNicePri=0,iMinimise=FALSE, iDumpImgs = FALSE;
 	int		iMethod=0;
@@ -101,6 +104,9 @@ int	main(int argc, char * const argv[]) {
 	if (strcmp(strTempLogFilePath,"") != 0) {
 		g_strLogFilePath = strdup(strTempLogFilePath);
 	}
+    if (strcmp(strParamFile,"") != 0) {
+        g_paramFileName = strdup(strParamFile);
+    }
 
 	TRACE_IN(main);
 

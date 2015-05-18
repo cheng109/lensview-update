@@ -50,6 +50,7 @@ It will work, but the module name logged to the file will not be correct.
 
 int		g_iTracePriority = LOG_TRACE_NONE;
 char	*g_strLogFilePath = NULL;
+char    *g_paramFileName = NULL;
 char	strMessage[MAX_MESG_LEN];			/* common string buffer for program to write messages into before tracing */
 
 /*
@@ -158,7 +159,7 @@ static	void	log_OpenLogFile() {
 		strftime(strTime,sizeof(strTime),"%Y%m%d_%H%M%S",localtime(&now));
 
 		if (strFullFileName == NULL) {
-			strFullFileName = (char *) malloc(sizeof(char) * ((g_strLogFilePath == NULL? 0: strlen(g_strLogFilePath)) + strlen(strTime) + strlen(LOG_FILE_NAME_PREFIX) + strlen(mach_name.nodename) +11));
+			strFullFileName = (char *) malloc(sizeof(char) * ((g_strLogFilePath == NULL? 0: strlen(g_strLogFilePath)) + strlen(strTime) + strlen(LOG_FILE_NAME_PREFIX) +strlen(g_paramFileName) + strlen(mach_name.nodename) +11));
 			if (strFullFileName == NULL) {
 				fprintf(stderr,"log_OpenLogFile: no malloc\n");
 				return;
@@ -169,7 +170,8 @@ static	void	log_OpenLogFile() {
 			bInsExtraSlash = TRUE;
 		}
 
-		sprintf(strFullFileName,"%s%s%s_%s_%s.log",g_strLogFilePath == NULL? "": g_strLogFilePath,(bInsExtraSlash? "/": "" ), LOG_FILE_NAME_PREFIX,strTime,mach_name.nodename);
+		//sprintf(strFullFileName,"%s%s%s_%s_%s_%s.log",g_strLogFilePath == NULL? "": g_strLogFilePath,(bInsExtraSlash? "/": "" ), LOG_FILE_NAME_PREFIX,g_paramFileName == NULL? "": g_paramFileName, strTime,mach_name.nodename);
+        sprintf(strFullFileName,"%s%s%s_%s_%s.log",g_strLogFilePath == NULL? "": g_strLogFilePath,(bInsExtraSlash? "/": "" ), LOG_FILE_NAME_PREFIX,g_paramFileName == NULL? "": g_paramFileName ,strTime);
 	}
 	while ((traceFile = fopen(strFullFileName,"r")) != NULL);
 

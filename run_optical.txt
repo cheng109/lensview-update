@@ -1,5 +1,6 @@
 #!/bin/csh -f
 rm lensview
+make clean
 make 
 cd example/
 rm -f core test_map.fits test_source.fits test_image.fits

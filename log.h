@@ -1,6 +1,6 @@
 #ifndef LOG_H
 #define LOG_H
-
+#include <limits.h>
 /***************************
 Generic Logging Package for C programs
 Copyright (C) 2006. Randall Wayth.
@@ -42,5 +42,5 @@ extern	void	log_LogTracePoint(int iPriority, char *strMessage, char *strModule);
 extern	char	*g_strLogFilePath;
 extern	int		g_iTracePriority;
 extern	char	strMessage[MAX_MESG_LEN];
-
+extern char    *g_paramFileName;
 #endif /* LOG_H */
