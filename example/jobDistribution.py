@@ -52,7 +52,7 @@ def sperateRegions(model, numFiles, upLimit):
         newInc = max((toList[i]-fromList[i])/numFiles, incList[i])
         start = fromList[i]
         temp = []
-        while start<=toList[i]:
+        while start+newInc<=toList[i]:
             if i<upLimit:
                 temp.append((start, start+newInc, incList[i]))
                 start+=newInc
@@ -112,8 +112,9 @@ def createMultipleParamFiles(paramFileName, numFiles, upLimit):
         if line[0]!="#":
             temp = re.split(',|\{|\}|\(|\)|\n',line)
             temp = [x for x in temp if (x!='' and x!='lenscomp')]
-            m = Model(temp)
-            modelList.append(m)
+            if len(temp)>0: 
+                m = Model(temp)
+                modelList.append(m)
     piece = []
     for model in modelList:
         piece.append(sperateRegions(model, numFiles, upLimit))
