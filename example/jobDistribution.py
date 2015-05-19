@@ -25,7 +25,6 @@ def createWorkDirectory(dirName):
     
     currentDir = os.getcwd()
     if not os.path.exists(currentDir+ "/"+ dirName):
-        print "hello"
         os.mkdir("work")
 
     return
@@ -68,7 +67,7 @@ def sperateRegions(model, numFiles, upLimit):
 
     newParamFileList = [""]*len(cross)
     for i in range(len(cross)):
-        tempString = "lenscomp{" + model.name + "}("
+        tempString = "lenscomp{" + model.name + "}(0,0," 
 
         for (a,b,c) in cross[i]:
             tempString += (str(round(a,2)) + "," + str(round(b,2)) + "," + str(round(c,2)) + ",")
@@ -125,20 +124,26 @@ def createMultipleParamFiles(paramFileName, numFiles, upLimit):
 
 def copyFiles(command, destination):
     for files in os.listdir("."):
-        if files.endswith(".fits"):
+        if files.endswith(".fits") or files.endswith(".fits.gz"):
             shutil.copy(files, destination)
     shutil.copy(command, destination)
     shutil.copy("lensview", destination)
 
-def submitJobs(pbsFileNameList):
+def submitJobs(pbsFileNameList, machine):
     for fileName in pbsFileNameList:
-        subprocess.call(["qsub", fileName])
+        if machine=='server':
+            subprocess.call(["qsub", fileName])
+        elif machine=='local':
+            subprocess.call(["bash", fileName])
+        else:
+            print "Please select 'server' or 'local'"
+            
     return 0
 
 
 def main():
     sep = 2
-    upLimit = 4
+    upLimit = 2
     commandFileName = sys.argv[1]
     workDirectoryName = "work"
     createWorkDirectory(workDirectoryName)
@@ -149,7 +154,7 @@ def main():
     os.chdir(workDirectoryName)
     paramFileNameList = createMultipleParamFiles(paramFileName, sep, upLimit)
     pbsFileNameList = createScriptPBS(remain, paramFileNameList, commandFileName)
-    #submitJobs(pbsFileNameList)
+    submitJobs(pbsFileNameList, machine='local')
 
 
 if __name__=='__main__':
