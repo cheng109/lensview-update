@@ -1,0 +1,35 @@
+# Makefile for lensview. Change the make variables according to your needs
+
+INCLUDES=-I/apps/group/lsst/dependencies/cfitsio
+#LIBS=-L$(HOME)/lib.linux
+LIBS=-L/apps/group/lsst/dependencies/cfitsio
+FC=gfortran
+# Regular compiling on both platforms with debugging symbols
+#CFLAGS= -Wall -g $(CFLAG_OS) $(INCLUDES) $(LIBS)
+# Optimised compiling on most platforms
+CFLAGS= -Wall -std=c99 -O $(INCLUDES) $(LIBS)
+
+# Optimised compiling with debugging on Compaqs
+#CFLAGS= -g2 -I$(INCLUDES) -L$(LIBS) -w0 -std
+# use this for profiling on Compaqs
+#CFLAGS= -pg -g2 -std -I$(INCLUDES) -L$(LD_LIBRARY_PATH)
+# use this for profiling on Suns
+#CFLAGS= -xpg -I$(INCLUDES) -L$(LD_LIBRARY_PATH)
+#FFLAGS= -fast
+COMMON_HDRS= log.h common.h
+OBJS= log.o parseopts.o lv_common.o lv_lens.o lv_geom.o lv_image.o lv_mem.o lv_critline.o lv_paramfit.o lensview.o
+
+lensview:	libfortranstuff.a $(OBJS) $(COMMON_HDRS) libfortranstuff.a
+# with fastell
+	$(FC)  $(CFLAGS) -o lensview $(OBJS) -lgsl -lgslcblas -lcfitsio -lrfftw -lfftw -lm -L. -lfortranstuff
+#without fastell
+#	$(CC) $(CFLAGS) -o lensview $(OBJS) -lgsl -lgslcblas -lcfitsio -lrfftw -lfftw -lm
+
+libfortranstuff.a:
+	$(FC) -O -c slatec/src/*.f fastell.f
+	ar -r libfortranstuff.a *.o
+	rm *.o
+
+clean:
+	rm -f *.o libfortranstuff.a
+
