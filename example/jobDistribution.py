@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import sys, os
 import re
 import itertools
@@ -89,10 +90,12 @@ def writeOutParametersFile(cross, paramFileName):
     return paramFileNameList
 
 def createScriptPBS(remain, paramFileNameList, commandFileName):
+    fullWorkPath = os.path.dirname(os.path.realpath(__file__))+"\n"
     head = """#PBS -q standby
 #PBS -l nodes=1:ppn=1,naccesspolicy=shared
 #PBS -l walltime=4:00:00
-"""
+cd """
+    head += fullWorkPath
     pbsFileNameList = []
     for paramName in paramFileNameList:
         fileName = commandFileName+"_"+ paramName
