@@ -5,6 +5,14 @@ Models modified:
 - NFW
 - SPEMD
 - PTMASS
+- PIEP
+
+New fetures: 
+- Output the residual maps
+- Output model and source images with names associated with parameter files ( Ready for Parallel computing ) 
+- 'jobDistribution.py' can be used to split the jobs into small pieces and submit the PBS script to computing clusters
+
+
 
 Lensview: Software for modelling resolved gravitational lenses.
 ===============================================================
