@@ -67,7 +67,9 @@ int lm_CreateLMComp_PtMass(lv_lensmodel_t *pLens, real_t fXoffset, real_t fYoffs
 int lm_CreateLMComp_MassSheet(lv_lensmodel_t *pLens, real_t fScaleFrom, real_t fScaleTo, real_t fScaleInc);
 int lm_CreateLMComp_PIEP(lv_lensmodel_t *pLens,real_t fXoffset, real_t fYoffset, real_t fMassScaleFrom,
 	real_t fMassScaleTo, real_t fMassScaleInc, real_t fEllipFrom, real_t fEllipTo, real_t fEllipInc,
-	real_t fAngleFrom, real_t fAngleTo, real_t fAngleInc, real_t fCoreFrom, real_t fCoreTo, real_t fCoreInc);
+	real_t fAngleFrom, real_t fAngleTo, real_t fAngleInc, real_t fCoreFrom, real_t fCoreTo, real_t fCoreInc,
+                         real_t fCenterXFromm, real_t fCenterXTo, real_t fCenterXInc,
+                         real_t fCenterYFrom, real_t CenterYTo, real_t CenterYInc);
 int lm_CreateLMComp_SIE(lv_lensmodel_t *pLens,real_t fXoffset, real_t fYoffset, real_t fMassScaleFrom,
 	real_t fMassScaleTo, real_t fMassScaleInc, real_t fEllipFrom, real_t fEllipTo, real_t fEllipInc,
 			real_t fAngleFrom, real_t fAngleTo, real_t fAngleInc,

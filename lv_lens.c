@@ -25,7 +25,7 @@ $Id: lv_lens.c,v 1.32 2008/10/31 20:43:10 rwayth Exp rwayth $
 #define	LM_NPARAMS_MASSSHEET	1
 #define	LM_NPARAMS_SPEMD	7
 #define	LM_NPARAMS_SIE		5
-#define	LM_NPARAMS_PIEP		4
+#define	LM_NPARAMS_PIEP		6
 #define	LM_NPARAMS_EXPDISC	4
 #define	LM_NPARAMS_SIS		1
 #define	LM_NPARAMS_SERSIC	5
@@ -162,10 +162,15 @@ int lm_CalcDeflComponent(lv_lenscomp *pLensComp, real_t fX, real_t fY, real_t *p
 			break;
 
 		case	LM_PIEP:
+            
 			/* parameters: mass, ellipticity, angle, core */
 			{
 				real_t	fCritRad,fDenom,fCoreRad,fEllip,fCosTheta_g,fSinTheta_g;
 				real_t	deltax1,deltay1,x1,y1;
+                
+                fX -= g_PixelResn*pLensComp->fParameter[4];
+                fY -= g_PixelResn*pLensComp->fParameter[5];
+                
 
 				/* pre-calculate constants */
 				fCosTheta_g = cos(pLensComp->fParameter[2]*M_PI/180);
@@ -680,10 +685,12 @@ lv_lensmodel_t *lm_ReadLensFile(char	*strFile) {
 					{
 						double	xoff=0,yoff=0,critfrom=0,critto=0,critinc=0,ellfrom=0,ellto=0,ellinc=0;
 						double	angfrom=0,angto=0,anginc=0,corefrom=0,coreto=0,coreinc=0;
-
-						nconv = sscanf(pStartParam+1,"(%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf)",
+                        double  centerXfrom =0, centerXto=0, centerXinc = 0;
+                        double  centerYfrom =0, centerYto=0, centerYinc = 0;
+						nconv = sscanf(pStartParam+1,"(%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf)",
                                        &xoff,&yoff,&critfrom,&critto,&critinc,
-                                       &ellfrom,&ellto,&ellinc,&angfrom,&angto,&anginc,&corefrom,&coreto,&coreinc);
+                                       &ellfrom,&ellto,&ellinc,&angfrom,&angto,&anginc,&corefrom,&coreto,&coreinc,
+                                       &centerXfrom, &centerXto, &centerXinc, &centerYfrom, &centerYto, &centerYinc);
 
 						if (nconv < LM_NPARAMS_PIEP*3+2) {
 							fprintf(stderr,"Parameter conversion failed for lens type %d. params were: <%s>\n",iCompType,pStartParam+1);
@@ -692,7 +699,7 @@ lv_lensmodel_t *lm_ReadLensFile(char	*strFile) {
 						}
 
 						iStatus = lm_CreateLMComp_PIEP(pLens,xoff,yoff,critfrom,critto,critinc,ellfrom,ellto,ellinc,
-							angfrom,angto,anginc,corefrom,coreto,coreinc);
+							angfrom,angto,anginc,corefrom,coreto,coreinc,centerXfrom, centerXto, centerXinc, centerYfrom, centerYto, centerYinc);
 
 					}
 					break;
@@ -1524,13 +1531,15 @@ Returns:
 ****************************/
 int	lm_CreateLMComp_PIEP(lv_lensmodel_t *pLens,real_t fXoffset, real_t fYoffset, real_t fMassScaleFrom,
 	real_t fMassScaleTo, real_t fMassScaleInc, real_t fEllipFrom, real_t fEllipTo, real_t fEllipInc,
-	real_t fAngleFrom, real_t fAngleTo, real_t fAngleInc, real_t fCoreFrom, real_t fCoreTo, real_t fCoreInc) {
+	real_t fAngleFrom, real_t fAngleTo, real_t fAngleInc, real_t fCoreFrom, real_t fCoreTo, real_t fCoreInc,
+                         real_t fCenterXFrom, real_t fCenterXTo, real_t fCenterXInc,
+                         real_t fCenterYFrom, real_t fCenterYTo, real_t fCenterYInc) {
 
 	int		iStatus=0;
 	real_t	fromparams[LM_NPARAMS_PIEP];
 	real_t	toparams[LM_NPARAMS_PIEP];
 	real_t	incparams[LM_NPARAMS_PIEP];
-	char	*strNames[LM_NPARAMS_PIEP] = {"Critrad","Ellipticity","Orient_Angle","Core_rad"};
+	char	*strNames[LM_NPARAMS_PIEP] = {"Critrad","Ellipticity","Orient_Angle","Core_rad", "CenterX", "CenterY"};
 
 	TRACE_IN(lm_CreateLMComp_PIEP);
 	if (fEllipFrom < 0 || fEllipTo >= 1.0) {
@@ -1548,20 +1557,28 @@ int	lm_CreateLMComp_PIEP(lv_lensmodel_t *pLens,real_t fXoffset, real_t fYoffset,
 	fromparams[1] = fEllipFrom;
 	fromparams[2] = fAngleFrom;
 	fromparams[3] = fCoreFrom;
+    fromparams[4] = fCenterXFrom;
+    fromparams[5] = fCenterYFrom;
+    
 	toparams[0] = fMassScaleTo;
 	toparams[1] = fEllipTo;
 	toparams[2] = fAngleTo;
 	toparams[3] = fCoreTo;
+    toparams[4] = fCenterXTo;
+    toparams[5] = fCenterYTo;
+    
 	incparams[0] = fMassScaleInc;
 	incparams[1] = fEllipInc;
 	incparams[2] = fAngleInc;
 	incparams[3] = fCoreInc;
+    incparams[4] = fCenterXInc;
+    incparams[5] = fCenterYInc;
 
 	pLens->iNumParameters +=LM_NPARAMS_PIEP+2;
 
 	iStatus = lm_InitLensModel(pLens, LM_PIEP, fXoffset, fYoffset, LM_NPARAMS_PIEP, fromparams, toparams, incparams,strNames);
 
-	sprintf(strMessage,"Created PIEP lens model component. offset: (%.2f,%.2f), Critrad: %g-%g +%g, Ellip: %.3f-%.3f +%.3f, Angle: %.1f-%.1f +%.1f, Core: %.3f-%.3f +%.3f",fXoffset,fYoffset,fMassScaleFrom, fMassScaleTo, fMassScaleInc, fEllipFrom, fEllipTo, fEllipInc, fAngleFrom, fAngleTo, fAngleInc, fCoreFrom, fCoreTo, fCoreInc);
+	sprintf(strMessage,"Created PIEP lens model component. offset: (%.2f,%.2f), Critrad: %g-%g +%g, Ellip: %.3f-%.3f +%.3f, Angle: %.1f-%.1f +%.1f, Core: %.3f-%.3f +%.3f, CenterX: %.3f-%.3f +%.3f, CenterY: %.3f-%.3f +%.3f",fXoffset,fYoffset,fMassScaleFrom, fMassScaleTo, fMassScaleInc, fEllipFrom, fEllipTo, fEllipInc, fAngleFrom, fAngleTo, fAngleInc, fCoreFrom, fCoreTo, fCoreInc,fCenterXFrom, fCenterXTo, fCenterXInc,fCenterYFrom, fCenterYTo, fCenterYInc);
 	TRACE(LOG_HIGH_PRI,strMessage);
 
 EXIT:
