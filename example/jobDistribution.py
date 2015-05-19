@@ -80,7 +80,7 @@ def sperateRegions(model, numFiles, upLimit):
 def writeOutParametersFile(cross, paramFileName):
     paramFileNameList = []
     for i in range(len(cross)):
-        newFileName = paramFileName + "_" + str(1000000+i)
+        newFileName = paramFileName + "_ID_" + str(1000000+i)
         paramFileNameList.append(newFileName)
         f = open(newFileName, 'w')
         for string in cross[i]:
@@ -89,14 +89,18 @@ def writeOutParametersFile(cross, paramFileName):
     return paramFileNameList
 
 def createScriptPBS(remain, paramFileNameList, commandFileName):
-    head = """
-hello! \n
+    head = """#PBS -q standby
+#PBS -l nodes=1:ppn=1,naccesspolicy=shared
+#PBS -l walltime=4:00:00
 """
+    pbsFileNameList = []
     for paramName in paramFileNameList:
-        f = open(commandFileName+"_"+ paramName, 'w')
-        f.write(head + remain[0] + " " +  paramName + " " + remain[1] + "\n" )
+        fileName = commandFileName+"_"+ paramName
+        pbsFileNameList.append(fileName)
+        f = open(fileName, 'w')
+        f.write(head + remain[0] + " " + paramName + " " + remain[1] + "\n" )
         f.close()
-    return
+    return pbsFileNameList
 
 
 def createMultipleParamFiles(paramFileName, numFiles, upLimit):
@@ -116,7 +120,17 @@ def createMultipleParamFiles(paramFileName, numFiles, upLimit):
     paramFileNameList = writeOutParametersFile(cross, paramFileName)
     return paramFileNameList
 
+def copyFiles(command, destination):
+    for files in os.listdir("."):
+        if files.endswith(".fits"):
+            shutil.copy(files, destination)
+    shutil.copy(command, destination)
+    shutil.copy("lensview", destination)
 
+def submitJobs(pbsFileNameList):
+    for fileName in pbsFileNameList:
+        subprocess.call(["qsub", fileName])
+    return 0
 
 
 def main():
@@ -125,14 +139,15 @@ def main():
     commandFileName = sys.argv[1]
     workDirectoryName = "work"
     createWorkDirectory(workDirectoryName)
-    shutil.copy(commandFileName, workDirectoryName+"/")
+    copyFiles(commandFileName, workDirectoryName+"/")
     paramFileName, remain = readCommandFile(commandFileName)
     shutil.copy(paramFileName, workDirectoryName+"/")
-  # copy 'command' and 'parameter' files to work directory
+
     os.chdir(workDirectoryName)
     paramFileNameList = createMultipleParamFiles(paramFileName, sep, upLimit)
-    createScriptPBS(remain, paramFileNameList, commandFileName)
+    pbsFileNameList = createScriptPBS(remain, paramFileNameList, commandFileName)
+    #submitJobs(pbsFileNameList)
+
 
 if __name__=='__main__':
     main()
-    
