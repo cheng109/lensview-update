@@ -142,8 +142,8 @@ def submitJobs(pbsFileNameList, machine):
 
 
 def main():
-    sep = 2
-    upLimit = 2
+    sep = 4
+    upLimit = 3
     commandFileName = sys.argv[1]
     workDirectoryName = "work"
     createWorkDirectory(workDirectoryName)
