@@ -1,0 +1,1 @@
+./lensview -logfilepath . -tracelevel 2 -pixelres 0.05 -datafile img_s6_mag5.fits -sourcefile source15x15empty.fits -psffile acs_wfc_psf_11x11.fits -nice 2 -pixelratio 3 -maxiter 100 -paramfile parameter_config -srcxoffset 4 -srcyoffset 5 -useminfinder -srcdefaultval 0.1 -noisefile var_s6_mag5.fits -targetchisqu 1000 -mask mask_s3.fits $*
