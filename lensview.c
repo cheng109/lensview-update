@@ -91,7 +91,7 @@ int	main(int argc, char * const argv[]) {
     strcat(dynamicOutputSourceImage, ".fits");
     
     char dynamicOutputResidulImage[PATH_MAX] = "model_res_";
-    strcat(dynamicOutputResidulImage, strParamFile);
+    //strcat(dynamicOutputResidulImage, strParamFile);
     //strcat(dynamicOutputResidulImage, ".fits");
 
     // Jun Cheng's update end:
@@ -432,11 +432,14 @@ goto EXIT;
 	    for(int tt=0; tt<nnum; ++tt) {
 	      nSum += fabs(residual->pImage[tt]);
 	    }
-	    char str[10]; 
-	    sprintf(str,"_[%d]", 900000000+(int)nSum); 
-	    
+	    //char str[7];
+        //printf("The sum is : %f\n", nSum);
+	    //sprintf(str,"_[%d]", (int)nSum);
+            //snprintf(str, 20, "_[%d]_", (int)nSum);
+        //printf("The sum string is: %s\n", str);
+            
 	    strcat(dynamicOutputResidulImage, strParamFile);
-	    strcat(dynamicOutputResidulImage, str);
+        //strcat(dynamicOutputResidulImage, str);
 	    strcat(dynamicOutputResidulImage, ".fits");
 
 	    
