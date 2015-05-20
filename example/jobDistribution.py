@@ -54,7 +54,7 @@ def sperateRegions(model, numFiles, upLimit):
         start = fromList[i]
         temp = []
 
-        if i<quota and (fromList[i]==toList[i] or fromList[i]+newInc > toList[i]):
+        if i<=quota and (fromList[i]==toList[i] or fromList[i]+newInc > toList[i]):
             quota +=1
             temp.append((fromList[i], toList[i], incList[i]))
         elif i>quota:
