@@ -22,25 +22,18 @@ class Model:
 
 def createWorkDirectory(dirName):
     # create a work directory:
-    
     currentDir = os.getcwd()
     if not os.path.exists(currentDir+ "/"+ dirName):
         os.mkdir(dirName)
-
     return
 
-
 def readCommandFile(commandFile):
-
     infile = open(commandFile, 'r')
     for line in infile.readlines():
         m = re.match('(.*paramfile)\s+(\S+)\s+(.*)',line)
-
         if m:
             paramFileName = m.group(2)
-
             return paramFileName, (m.group(1), m.group(3))
-
     print "Parameter file name not found!"
 
 def sperateRegions(model, numFiles, upLimit):
@@ -53,7 +46,6 @@ def sperateRegions(model, numFiles, upLimit):
         newInc = max((toList[i]-fromList[i])/numFiles, incList[i])
         start = fromList[i]
         temp = []
-
         if i<=quota and (fromList[i]==toList[i] or fromList[i]+newInc > toList[i]):
             quota +=1
             temp.append((fromList[i], toList[i], incList[i]))
@@ -66,14 +58,11 @@ def sperateRegions(model, numFiles, upLimit):
             if start<toList[i] and i<upLimit:
                 temp.append((start, toList[i], incList[i]))
         NestList.append(temp)
-
     cross = list(itertools.product(*NestList))
-    print cross 
 
     newParamFileList = [""]*len(cross)
     for i in range(len(cross)):
         tempString = "lenscomp{" + model.name + "}(0,0," 
-
         for (a,b,c) in cross[i]:
             tempString += (str(round(a,2)) + "," + str(round(b,2)) + "," + str(round(c,2)) + ",")
         tempList = list(tempString)
@@ -143,7 +132,6 @@ def submitJobs(pbsFileNameList, machine):
             subprocess.call(["bash", fileName])
         else:
             print "Please select 'server' or 'local'"
-            
     return 0
 
 
@@ -163,7 +151,7 @@ def main():
     os.chdir(workDirectoryName)
     paramFileNameList = createMultipleParamFiles(paramFileName, sep, upLimit)
     pbsFileNameList = createScriptPBS(remain, paramFileNameList, commandFileName)
-   # submitJobs(pbsFileNameList, machine='server')
+    submitJobs(pbsFileNameList, machine='server')
 
 
 if __name__=='__main__':
