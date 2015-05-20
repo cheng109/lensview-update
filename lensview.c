@@ -92,7 +92,7 @@ int	main(int argc, char * const argv[]) {
     
     char dynamicOutputResidulImage[PATH_MAX] = "model_res_";
     strcat(dynamicOutputResidulImage, strParamFile);
-    strcat(dynamicOutputResidulImage, ".fits");
+    //strcat(dynamicOutputResidulImage, ".fits");
 
     // Jun Cheng's update end:
 	
@@ -427,7 +427,20 @@ goto EXIT;
         if (pBestImg != NULL) {
             lv_write_image_to_file(pBestImg,dynamicOutputModelImage, TRUE);
             lv_image_t *residual = lv_residual_img_file(pReadImg, pBestImg);
-            lv_write_image_to_file(residual, dynamicOutputResidulImage, TRUE);
+	    int nnum = residual->pAxisSize[0]*residual->pAxisSize[1]; 
+	    double nSum = 0;  
+	    for(int tt=0; tt<nnum; ++tt) {
+	      nSum += fabs(residual->pImage[tt]);
+	    }
+	    char str[10]; 
+	    sprintf(str,"_[%d]", 900000000+(int)nSum); 
+	    
+	    strcat(dynamicOutputResidulImage, strParamFile);
+	    strcat(dynamicOutputResidulImage, str);
+	    strcat(dynamicOutputResidulImage, ".fits");
+
+	    
+	    lv_write_image_to_file(residual, dynamicOutputResidulImage, TRUE);
             lv_free_image_struct(residual);
         }
         //if (pBestSrc != NULL) lv_write_image_to_file(pBestSrc,strOutputSourceFile,TRUE);
