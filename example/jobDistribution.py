@@ -48,23 +48,27 @@ def sperateRegions(model, numFiles, upLimit):
     toList = model.toList
     incList = model.incList
     NestList = []
+    quota = upLimit
     for i in range(len(fromList)):
         newInc = max((toList[i]-fromList[i])/numFiles, incList[i])
         start = fromList[i]
         temp = []
-        while start+newInc<=toList[i]:
-            if i<upLimit:
+
+        if i<quota and (fromList[i]==toList[i] or fromList[i]+newInc > toList[i]):
+            quota +=1
+            temp.append((fromList[i], toList[i], incList[i]))
+        elif i>quota:
+            temp.append((fromList[i], toList[i], incList[i]))
+        else:
+            while start+newInc<=toList[i]:
                 temp.append((start, start+newInc, incList[i]))
                 start+=newInc
-            else:
-                temp.append((fromList[i], toList[i], incList[i]))
-                break
-
-        if start<toList[i]:
-            temp.append((start, toList[i], incList[i]))
+            if start<toList[i] and i<upLimit:
+                temp.append((start, toList[i], incList[i]))
         NestList.append(temp)
-    cross = list(itertools.product(*NestList))
 
+    cross = list(itertools.product(*NestList))
+    print cross 
 
     newParamFileList = [""]*len(cross)
     for i in range(len(cross)):
@@ -144,8 +148,8 @@ def submitJobs(pbsFileNameList, machine):
 
 
 def main():
-    sep = 2
-    upLimit = 2
+    sep = 3
+    upLimit = 3
     commandFileName = sys.argv[1]
     if len(sys.argv)==3:
         workDirectoryName = sys.argv[2]
@@ -159,7 +163,7 @@ def main():
     os.chdir(workDirectoryName)
     paramFileNameList = createMultipleParamFiles(paramFileName, sep, upLimit)
     pbsFileNameList = createScriptPBS(remain, paramFileNameList, commandFileName)
-    submitJobs(pbsFileNameList, machine='server')
+   # submitJobs(pbsFileNameList, machine='server')
 
 
 if __name__=='__main__':
