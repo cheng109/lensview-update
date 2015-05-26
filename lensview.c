@@ -3,6 +3,7 @@
 Copyright (C) 2006. Randall Wayth.
 $Id: lensview.c,v 1.20 2008/10/31 21:05:49 rwayth Exp rwayth $
 */
+#define  PATH_MAX  2048
 #include	<stdio.h>
 #include	<stdlib.h>
 #include	<time.h>
