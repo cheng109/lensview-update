@@ -19,12 +19,16 @@ def getResidual(fileList, varFile):
     return normRes
 
 
-def writeOutRes(outputName, dict):
+def writeOutRes(outputName, normRes):
     f = open(outputName,'w')
-    f.write("#0 File name \n#1 Sum of abs(residual)\n\n")
+    f.write("#0 File name \n"+
+            "#1 Sum of abs(residual)"+
+            "\n\n")
 
-    for key, value in dict.iteritems():
+    for key, value in normRes.iteritems():
         f.write(key + "\t" + str(value) + "\n")
+    f.write("\nThe one with Minimum abs(residual) is:\n"+ str(min(normRes, key=normRes.get)) + "\n")
+
     f.close()
 
 
