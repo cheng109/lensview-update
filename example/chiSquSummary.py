@@ -27,8 +27,8 @@ def writeOutRes(outputName, normRes):
 
     for key, value in normRes.iteritems():
         f.write(key + "\t" + str(value) + "\n")
-    f.write("\nThe one with Minimum abs(residual) is:\n"+ str(min(normRes, key=normRes.get)) + "\n")
-
+    f.write("\nThe one with Minimum abs(residual) is:\n"+ str(min(normRes, key=normRes.get)) + " ")
+    f.write(str(normRes[min(normRes, key=normRes.get)]) + "\n")
     f.close()
 
 
